@@ -13,7 +13,10 @@ from src.search.oracle import bfs_oracle
 
 REPO = Path(__file__).resolve().parents[1]
 DATA_DIR = REPO / "data" / "motion_planning_datasets"
-RESULTS = REPO / "results" / "exp_cf"
+RESULTS_V3 = REPO.parent / "code_v3" / "results"          # code_v4 lee de code_v3 lo que ya existe, sin copiarlo
+RESULTS = RESULTS_V3 / "exp_cf"                           # fotos base de la voraz con h_fs y referencias de validacion y prueba
+EXP_CF2 = RESULTS_V3 / "exp_cf2"                          # best.pt y csv de prueba de cf_filtro
+RESULTS_GEO = REPO / "results" / "exp_geo"
 DATASETS = ["gaps_and_forest", "multiple_bugtraps", "mazes"]
 N_TRAIN, N_VAL, N_TEST = 200, 70, 100
 MAX_EXP = 10000

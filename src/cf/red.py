@@ -30,6 +30,7 @@ class CfConfig:
     salida: str = "fina"          # fina, filtro (gauss fijo despues de la cabeza) o gruesa (cabeza en baja resolucion e interpolacion)
     sigma: float = 0.0            # filtro: desvio del gauss en celdas
     nivel_grueso: int = 3         # gruesa: nivel del decodificador donde va la cabeza, lado LADO / 2**nivel (26 con 3)
+    canales_entrada: int = CANALES  # exp_geo usa 3 canales sin meta ni h_fs, los checkpoints viejos quedan en 5
 
     def to_dict(self):
         return asdict(self)
@@ -117,7 +118,7 @@ class UNetCF(nn.Module):
         super().__init__()
         self.cfg = cfg
         w = [cfg.ancho * 2 ** i for i in range(cfg.niveles + 1)]       # 32 64 128 256 512 con 4 niveles
-        self.enc = nn.ModuleList([bloque(CANALES if i == 0 else w[i - 1], w[i]) for i in range(cfg.niveles + 1)])
+        self.enc = nn.ModuleList([bloque(cfg.canales_entrada if i == 0 else w[i - 1], w[i]) for i in range(cfg.niveles + 1)])
         self.pool = nn.MaxPool2d(2)
         lado = LADO // 2 ** cfg.niveles
         self.pos = nn.Parameter(torch.zeros(1, lado * lado, w[-1]))
@@ -172,7 +173,7 @@ class LocalCF(nn.Module):
     def __init__(self, cfg):
         super().__init__()
         self.cfg = cfg
-        capas, c = [], CANALES
+        capas, c = [], cfg.canales_entrada
         for _ in range(cfg.capas_local):
             capas += [nn.Conv2d(c, cfg.ancho, 3, padding=1), nn.GroupNorm(8, cfg.ancho), nn.LeakyReLU()]
             c = cfg.ancho
