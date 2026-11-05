@@ -1,0 +1,13 @@
+.venv
+data
+__pycache__/
+*.pyc
+.DS_Store
+*.pt
+*.npy
+results/*
+!results/exp_geo/
+results/exp_geo/*
+!results/exp_geo/RESUMEN.md
+!results/exp_geo/limpieza.log
+estado*.txt
