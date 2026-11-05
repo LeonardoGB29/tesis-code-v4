@@ -53,7 +53,7 @@ bash experiments/humo_geo.sh
 nohup caffeinate -dimsu bash experiments/run_geo.sh >> results/exp_geo/maestro.log 2>&1 &
 ```
 
-En Linux no hay caffeinate, se quita de la orden. El maestro es relanzable con la misma orden, salta lo que ya tiene marcador listo o csv, cada entrenamiento sigue desde su last.pt y los logs solo se anexan. Variables que se pueden cambiar al lanzar, EPOCHS, DEVICE, SEEDS, LAMBDAS, DATASETS y PAR_BARRIDO.
+En Linux no hay caffeinate, se quita de la orden, y con GPU de Nvidia se lanza con DEVICE=cuda. El maestro es relanzable con la misma orden, salta lo que ya tiene marcador listo o csv, cada entrenamiento sigue desde su last.pt y los logs solo se anexan. Variables que se pueden cambiar al lanzar, EPOCHS, DEVICE, SEEDS, LAMBDAS, DATASETS y PAR_BARRIDO.
 
 ## Dónde queda cada cosa
 

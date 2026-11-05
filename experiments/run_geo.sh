@@ -6,7 +6,7 @@ set -u
 cd "$(dirname "$0")/.."
 PY=.venv/bin/python
 ROOT=${ROOT:-results/exp_geo}
-export ROOT DEVICE=${DEVICE:-mps} EPOCHS=${EPOCHS:-10} EXTRA_TRAIN=${EXTRA_TRAIN:-} EXTRA_EVAL=${EXTRA_EVAL:-} EXTRA_MET=${EXTRA_MET:-}
+export ROOT DEVICE=${DEVICE:-mps} EPOCHS=${EPOCHS:-10} EXTRA_TRAIN=${EXTRA_TRAIN:-} EXTRA_EVAL=${EXTRA_EVAL:-} EXTRA_MET=${EXTRA_MET:-} EXTRA_FOTOS=${EXTRA_FOTOS:-}
 SEEDS=${SEEDS:-"0 1 2"}
 LAMBDAS=${LAMBDAS:-"0 0.5 1 2 4 8 16 32"}
 DATASETS=${DATASETS:-"gaps_and_forest multiple_bugtraps mazes"}
@@ -85,8 +85,9 @@ done
 # 2 verificaciones previas, los tres conjuntos a la vez
 if [ ! -f $ROOT/checks/estado.txt ]; then
   log "verificaciones previas"
-  for ds in $DATASETS; do $PY -m experiments.check_geo --root $ROOT --dataset $ds --n $N_CHECK > $ROOT/checks/check_geo_$ds.log 2>&1 & done
-  wait
+  cpids=""
+  for ds in $DATASETS; do $PY -m experiments.check_geo --root $ROOT --dataset $ds --n $N_CHECK > $ROOT/checks/check_geo_$ds.log 2>&1 & cpids="$cpids $!"; done
+  wait $cpids
   cat $ROOT/checks/estado_*.txt > $ROOT/checks/estado.txt 2>/dev/null
 fi
 if grep -q " 0$" $ROOT/checks/estado.txt; then log "FALLO verificaciones, ver $ROOT/checks"; cat $ROOT/checks/estado.txt; estado; exit 1; fi
@@ -122,8 +123,9 @@ cadena() {
   wait $pids
   log "cadena $ds termina"
 }
-for ds in $DATASETS; do cadena $ds >> $ROOT/trabajos.log 2>&1 & done
-wait
+cpids=""
+for ds in $DATASETS; do cadena $ds >> $ROOT/trabajos.log 2>&1 & cpids="$cpids $!"; done
+wait $cpids
 estado
 
 # 4 resumen y figuras

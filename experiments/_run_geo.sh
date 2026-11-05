@@ -17,6 +17,7 @@ EPOCHS=${EPOCHS:-10}
 EXTRA_TRAIN=${EXTRA_TRAIN:-}
 EXTRA_EVAL=${EXTRA_EVAL:-}
 EXTRA_MET=${EXTRA_MET:-}
+EXTRA_FOTOS=${EXTRA_FOTOS:-}
 ESPERA_MAX=${ESPERA_MAX:-14400}
 paso=$1; ds=$2
 log() { echo "[$(date '+%H:%M:%S')] $*"; }
@@ -44,11 +45,11 @@ lam_de() { $PY -c "import json,sys; print(json.load(open(sys.argv[1]))['lambda']
 case $paso in
   fotos_hfs_val)
     out=$ROOT/fotos/$ds/hfs_val
-    [ -f $out/listo ] || intentar $PY -m experiments.fotos_geo --dataset $ds --que hfs_val --out-root $ROOT/fotos || exit 1 ;;
+    [ -f $out/listo ] || intentar $PY -m experiments.fotos_geo --dataset $ds --que hfs_val --out-root $ROOT/fotos $EXTRA_FOTOS || exit 1 ;;
   fotos_cf)
     s=$3; split=$4; suf=train; [ "$split" = validation ] && suf=val
     out=$ROOT/fotos/$ds/cf_s${s}_$suf
-    [ -f $out/listo ] || intentar $PY -m experiments.fotos_geo --dataset $ds --que cf --seed $s --split $split --out-root $ROOT/fotos || exit 1 ;;
+    [ -f $out/listo ] || intentar $PY -m experiments.fotos_geo --dataset $ds --que cf --seed $s --split $split --out-root $ROOT/fotos $EXTRA_FOTOS || exit 1 ;;
   train)
     s=$3; out=$ROOT/runs/$ds/geo_s$s
     if [ ! -f $out/listo ]; then
