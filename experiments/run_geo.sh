@@ -45,7 +45,7 @@ estado() {
     echo
     echo "Para relanzar o completar, la misma orden, no repite nada listo"
     echo "  $RELANZAR"
-  } > $ROOT/estado.txt.tmp.$BASHPID && mv $ROOT/estado.txt.tmp.$BASHPID $ROOT/estado.txt
+  } > $ROOT/estado.txt.tmp.$$.$RANDOM; mv $ROOT/estado.txt.tmp.$$.* $ROOT/estado.txt 2>/dev/null
 }
 
 vigia() {
