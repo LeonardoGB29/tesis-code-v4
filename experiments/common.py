@@ -13,7 +13,8 @@ from src.search.oracle import bfs_oracle
 
 REPO = Path(__file__).resolve().parents[1]
 DATA_DIR = REPO / "data" / "motion_planning_datasets"
-RESULTS_V3 = REPO.parent / "code_v3" / "results"          # code_v4 lee de code_v3 lo que ya existe, sin copiarlo
+import os
+RESULTS_V3 = Path(os.environ.get("TESIS_CODE_V3", REPO.parent / "code_v3")) / "results"   # code_v4 lee de code_v3 lo que ya existe, en otra maquina se apunta con TESIS_CODE_V3
 RESULTS = RESULTS_V3 / "exp_cf"                           # fotos base de la voraz con h_fs y referencias de validacion y prueba
 EXP_CF2 = RESULTS_V3 / "exp_cf2"                          # best.pt y csv de prueba de cf_filtro
 RESULTS_GEO = REPO / "results" / "exp_geo"
