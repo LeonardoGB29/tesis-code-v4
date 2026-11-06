@@ -1,0 +1,5 @@
+dataset,busqueda,mapas,exp_total,secs,ms_nodo,ms_nodo_red,s_mapa,llamadas_red
+mazes,voraz_hfs,10,4103,1.6,0.391,0.0,0.16,0
+mazes,cf_filtro_s0,10,4077,16.36,4.013,3.705,1.636,207
+mazes,h_geo_lam4,10,4645,17.81,3.835,3.441,1.781,237
+mazes,h_geo_real_lam4,10,3453,1.21,0.349,0.0,0.121,0

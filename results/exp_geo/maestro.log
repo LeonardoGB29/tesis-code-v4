@@ -1,0 +1,8 @@
+[maestro 2026-11-05 09:53:27] inicio, EPOCHS=10 DEVICE=cuda SEEDS=0 1 2 LAMBDAS=0 0.5 1 2 4 8 16 32 DATASETS=gaps_and_forest multiple_bugtraps mazes PAR_BARRIDO=2, maquina MINGW64_NT-10.0-26200 x86_64
+[maestro 2026-11-05 09:53:28] pruebas
+[maestro 2026-11-05 09:54:36] pruebas ok
+[maestro 2026-11-05 09:54:36] verificaciones previas
+[maestro 2026-11-05 10:06:49] verificaciones ok
+[maestro 2026-11-05 12:26:07] resumen y figuras
+[maestro 2026-11-05 12:27:05] fin, 153 minutos, fallos en trabajos.log 0
+0

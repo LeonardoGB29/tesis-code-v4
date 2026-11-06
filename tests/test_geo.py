@@ -137,6 +137,7 @@ def test_entrena_y_guarda():
         from pathlib import Path
         Path(f"{d}/vacio").mkdir(); Path(f"{d}/vacio/listo").write_text("0 fotos, prueba\n")
         assert cargar_opcional(f"{d}/vacio") is None and len(unir_opcional([f2, None])) == len(fotos)
+        del f2                     # en windows el directorio temporal no se puede borrar mientras los npy siguen mapeados en memoria
     print(f"ok entrena {l0:.4f} -> {loss.item():.4f} (previo {bce_previo:.4f}), guarda y carga")
 
 

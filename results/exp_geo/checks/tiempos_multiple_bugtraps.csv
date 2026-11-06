@@ -1,0 +1,5 @@
+dataset,busqueda,mapas,exp_total,secs,ms_nodo,ms_nodo_red,s_mapa,llamadas_red
+multiple_bugtraps,voraz_hfs,10,16571,6.38,0.385,0.0,0.638,0
+multiple_bugtraps,cf_filtro_s0,10,15532,72.24,4.651,4.301,7.224,772
+multiple_bugtraps,h_geo_lam4,10,19528,68.95,3.531,3.145,6.895,981
+multiple_bugtraps,h_geo_real_lam4,10,13674,3.98,0.291,0.0,0.398,0

@@ -1,0 +1,5 @@
+dataset,busqueda,mapas,exp_total,secs,ms_nodo,ms_nodo_red,s_mapa,llamadas_red
+gaps_and_forest,voraz_hfs,9,14814,5.52,0.373,0.0,0.613,0
+gaps_and_forest,cf_filtro_s0,9,6803,23.45,3.448,3.218,2.606,342
+gaps_and_forest,h_geo_lam4,9,18225,57.46,3.153,2.806,6.384,915
+gaps_and_forest,h_geo_real_lam4,9,9249,2.56,0.277,0.0,0.285,0

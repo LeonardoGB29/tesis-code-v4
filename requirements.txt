@@ -5,3 +5,4 @@ scipy==1.17.1
 pillow==12.2.0
 pandas==3.0.3
 matplotlib==3.10.9
+mambapy==1.2.0

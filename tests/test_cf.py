@@ -169,6 +169,7 @@ def test_guardar_cargar():
         assert len(f2) == len(fotos) and np.array_equal(f2.hfs, fotos.hfs)
         u = Fotos.unir([fotos, f2])
         assert len(u) == 2 * len(fotos)
+        del u, f2                  # en windows el directorio temporal no se puede borrar mientras los npy siguen mapeados en memoria
     print("ok guardar, cargar y unir")
 
 

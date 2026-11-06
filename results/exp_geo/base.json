@@ -1,0 +1,92 @@
+{
+ "gaps_and_forest": {
+  "base": "cf_filtro",
+  "lambda": 0.0,
+  "h_geo": {
+   "exp": 1579.246153846154,
+   "camino": 1.2534877745465332,
+   "semillas": 3,
+   "por_semilla": [
+    1579.2,
+    1579.2,
+    1579.2
+   ]
+  },
+  "cf_filtro": {
+   "exp": 826.9333333333334,
+   "camino": 1.0498,
+   "semillas": 3,
+   "por_semilla": [
+    822.5,
+    823.2,
+    835.1
+   ]
+  },
+  "ref_hfs": {
+   "exp": 1579.246153846154,
+   "camino": 1.2534877745465332,
+   "encontrados": 65,
+   "n": 65
+  }
+ },
+ "multiple_bugtraps": {
+  "base": "cf_filtro",
+  "lambda": 4.0,
+  "h_geo": {
+   "exp": 1085.4285714285716,
+   "camino": 1.1829492954257486,
+   "semillas": 3,
+   "por_semilla": [
+    1092.0,
+    1127.1,
+    1037.2
+   ]
+  },
+  "cf_filtro": {
+   "exp": 1025.2666666666667,
+   "camino": 1.189,
+   "semillas": 3,
+   "por_semilla": [
+    1072.3,
+    970.6,
+    1032.9
+   ]
+  },
+  "ref_hfs": {
+   "exp": 1163.3857142857144,
+   "camino": 1.1819341979452327,
+   "encontrados": 70,
+   "n": 70
+  }
+ },
+ "mazes": {
+  "base": "cf_filtro",
+  "lambda": 0.0,
+  "h_geo": {
+   "exp": 523.0571428571428,
+   "camino": 1.103205928909532,
+   "semillas": 3,
+   "por_semilla": [
+    523.1,
+    523.1,
+    523.1
+   ]
+  },
+  "cf_filtro": {
+   "exp": 512.4333333333334,
+   "camino": 1.0952,
+   "semillas": 3,
+   "por_semilla": [
+    520.7,
+    493.5,
+    523.1
+   ]
+  },
+  "ref_hfs": {
+   "exp": 523.0571428571428,
+   "camino": 1.103205928909532,
+   "encontrados": 70,
+   "n": 70
+  }
+ }
+}

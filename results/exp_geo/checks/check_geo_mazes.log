@@ -1,0 +1,11 @@
+[mazes] constante: pasa
+[mazes] fuga: pasa en 3 mapas
+[mazes] epoca cero: cnn 100 de 100 iguales a h_fs, real 100 de 100 (204s)
+[mazes] tiempos voraz_hfs: 0.391 ms por nodo, 0.16 s por mapa, red 0.0 ms por nodo
+[mazes] tiempos cf_filtro_s0: 4.013 ms por nodo, 1.636 s por mapa, red 3.705 ms por nodo
+[mazes] tiempos h_geo_lam4: 3.835 ms por nodo, 1.781 s por mapa, red 3.441 ms por nodo
+[mazes] tiempos h_geo_real_lam4: 0.349 ms por nodo, 0.121 s por mapa, red 0.0 ms por nodo
+constante_mazes 1
+fuga_mazes 1
+epoca_cero_mazes 1
+tiempos_mazes 1

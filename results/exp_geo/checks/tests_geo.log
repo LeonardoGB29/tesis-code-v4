@@ -1,0 +1,9 @@
+ok canales de 3 y etiqueta de ocupacion en lo no visto
+ok la cnn arranca en el previo constante exacto
+ok con lambda 0 h_geo con la cnn y con la ocupacion real reproduce la voraz con h_fs
+ok distancia_geo, lambda 0 es h_fs, los costos suben con lambda y nunca bloquean
+ok entrena 0.2702 -> 0.2692 (previo 0.2702), guarda y carga
+ok la cnn de geometria, cf_filtro y h_geo no ven las celdas no vistas
+ok auc 0.500, calibracion, corredor de 16794 celdas y tramos de frontera
+ok la ocupacion real con lambda 8 expande menos que h_fs en 4 de 4 mapas
+8/8 pruebas ok

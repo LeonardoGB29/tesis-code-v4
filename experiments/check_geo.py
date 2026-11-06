@@ -1,5 +1,5 @@
 # verificaciones previas de exp_geo
-#   1 constante. la cnn recien construida da logit(p0) exacto en todas las celdas y lo mismo en cpu y en mps
+#   1 constante. la cnn recien construida da logit(p0) exacto en todas las celdas y lo mismo en cpu y en el acelerador, mps o cuda
 #   2 epoca cero. con lambda 0, h_geo con la cnn y con la ocupacion real reproduce la voraz con h_fs en los mapas de prueba, expansion por expansion
 #   3 fuga. cambiar celdas no vistas del mapa real no cambia la cnn de geometria, ni cf_filtro, ni los h_geo de la frontera
 #   4 tiempos. ms por nodo de h_fs, cf_filtro y h_geo en 10 mapas de prueba, a solas
@@ -42,14 +42,15 @@ def check_constante(root, ds):
     exacto = bool(torch.all(cpu == cpu.flatten()[0])) and abs(float(cpu.flatten()[0]) - esperado) < 1e-6
     ok &= exacto
     filas.append([ds, "cpu", float(cpu.min()), float(cpu.max()), esperado, int(exacto), ""])
-    if torch.backends.mps.is_available():
+    aceleradores = (["mps"] if torch.backends.mps.is_available() else []) + (["cuda"] if torch.cuda.is_available() else [])
+    for dev in aceleradores:
         with torch.no_grad():
-            mps = m.to("mps")(x.to("mps")).cpu()
+            otro = m.to(dev)(x.to(dev)).cpu()
         m.to("cpu")
-        dif = float((mps - cpu).abs().max())
+        dif = float((otro - cpu).abs().max())
         igual = dif < 1e-5
         ok &= igual
-        filas.append([ds, "mps", float(mps.min()), float(mps.max()), esperado, int(igual), f"{dif:.2e}"])
+        filas.append([ds, dev, float(otro.min()), float(otro.max()), esperado, int(igual), f"{dif:.2e}"])
     write_csv(root / "checks" / f"constante_{ds}.csv", ["dataset", "device", "min", "max", "esperado", "pasa", "dif_con_cpu"], filas)
     print(f"[{ds}] constante: {'pasa' if ok else 'NO pasa'}", flush=True)
     return ok

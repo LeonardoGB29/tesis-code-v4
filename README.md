@@ -55,6 +55,31 @@ nohup caffeinate -dimsu bash experiments/run_geo.sh >> results/exp_geo/maestro.l
 
 En Linux no hay caffeinate, se quita de la orden, y con GPU de Nvidia se lanza con DEVICE=cuda. El maestro es relanzable con la misma orden, salta lo que ya tiene marcador listo o csv, cada entrenamiento sigue desde su last.pt y los logs solo se anexan. Variables que se pueden cambiar al lanzar, EPOCHS, DEVICE, SEEDS, LAMBDAS, DATASETS y PAR_BARRIDO.
 
+## Qué hizo falta en Windows con Git Bash
+
+Se corrió el 2026-11-05 en una laptop con Windows 11, 16 GB de RAM y una RTX 4070 de 8 GB. Todo lo demás es igual, con DEVICE=cuda y sin caffeinate.
+
+- Si git tiene core.autocrlf en true el clon trae CRLF y bash no corre los .sh. Se pone en false en el repo y se normalizan los archivos con `git ls-files -z | xargs -0 sed -i 's/\r$//'`.
+- Sin modo desarrollador no hay enlaces simbólicos. data y .venv/bin se crean como junctions, el segundo apunta a .venv/Scripts para que .venv/bin/python exista como en Mac.
+
+```bash
+cmd //c "mklink /J data ..\code_v3\data"
+py -3.14 -m venv .venv
+cmd //c "mklink /J .venv\bin .venv\Scripts"
+.venv/bin/pip install torch==2.12.0 --index-url https://download.pytorch.org/whl/cu130
+.venv/bin/pip install -r requirements.txt
+```
+
+- Si el toolkit de CUDA del sistema está en el PATH, su cuDNN choca con la que trae torch y toda convolución en la GPU falla con CUDNN_STATUS_SUBLIBRARY_VERSION_MISMATCH. Se quita del PATH del proceso con un sitecustomize.py dentro del venv que filtra las entradas con NVIDIA GPU Computing Toolkit. Es un ajuste de la máquina y no del repo.
+- El maestro usa ps, vm_stat y sysctl para el estado y el vigía. En Git Bash no existen y run_geo.sh pregunta a WMI con powershell. En Linux usa /proc/vmstat y free.
+- No hay caffeinate. experiments/despierto.py pide al sistema que no se suspenda y se va solo cuando estado.txt lleva 5 minutos sin reescribirse.
+
+```bash
+mkdir -p results/exp_geo/logs
+DEVICE=cuda nohup bash experiments/run_geo.sh >> results/exp_geo/maestro.log 2>&1 &
+nohup .venv/bin/python experiments/despierto.py results/exp_geo > results/exp_geo/logs/despierto.log 2>&1 &
+```
+
 ## Dónde queda cada cosa
 
 Todo en results/exp_geo. Fotos nuevas en fotos, entrenamientos en runs, barrido de lambda en barrido, prueba en eval, métricas de la CNN en metricas, verificaciones en checks, tablas en tablas.md y el borrador del informe en RESUMEN_auto.md. El RESUMEN.md se escribe a mano al final.

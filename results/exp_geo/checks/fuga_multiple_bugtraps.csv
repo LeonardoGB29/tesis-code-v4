@@ -1,0 +1,4 @@
+dataset,grid,celdas_vistas,celdas_cambiadas,cnn_geo_igual,cf_filtro_igual,h_geo_igual,cambia_si_cambia_lo_visto
+multiple_bugtraps,900.png,547,200,1,1,1,1
+multiple_bugtraps,901.png,689,200,1,1,1,1
+multiple_bugtraps,902.png,588,200,1,1,1,1

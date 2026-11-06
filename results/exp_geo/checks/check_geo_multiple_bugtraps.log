@@ -1,0 +1,11 @@
+[multiple_bugtraps] constante: pasa
+[multiple_bugtraps] fuga: pasa en 3 mapas
+[multiple_bugtraps] epoca cero: cnn 100 de 100 iguales a h_fs, real 100 de 100 (494s)
+[multiple_bugtraps] tiempos voraz_hfs: 0.385 ms por nodo, 0.638 s por mapa, red 0.0 ms por nodo
+[multiple_bugtraps] tiempos cf_filtro_s0: 4.651 ms por nodo, 7.224 s por mapa, red 4.301 ms por nodo
+[multiple_bugtraps] tiempos h_geo_lam4: 3.531 ms por nodo, 6.895 s por mapa, red 3.145 ms por nodo
+[multiple_bugtraps] tiempos h_geo_real_lam4: 0.291 ms por nodo, 0.398 s por mapa, red 0.0 ms por nodo
+constante_multiple_bugtraps 1
+fuga_multiple_bugtraps 1
+epoca_cero_multiple_bugtraps 1
+tiempos_multiple_bugtraps 1

@@ -1,0 +1,4 @@
+dataset,grid,celdas_vistas,celdas_cambiadas,cnn_geo_igual,cf_filtro_igual,h_geo_igual,cambia_si_cambia_lo_visto
+gaps_and_forest,900.png,497,200,1,1,1,1
+gaps_and_forest,901.png,516,200,1,1,1,1
+gaps_and_forest,902.png,539,200,1,1,1,1

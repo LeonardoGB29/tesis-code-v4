@@ -1,11 +1,13 @@
 #!/bin/bash
-# humo de exp_geo, todo el circuito con pocas fotos y pocos mapas, entrenamiento en cpu y en mps, lo demas sobre la corrida de mps
+# humo de exp_geo, todo el circuito con pocas fotos y pocos mapas, entrenamiento en cpu y en el acelerador DEVICE, mps por defecto, lo demas sobre la corrida del acelerador
 #   bash experiments/humo_geo.sh            -> results/exp_geo/humo
 set -u
 cd "$(dirname "$0")/.."
 PY=.venv/bin/python
 H=${H:-results/exp_geo/humo}
 ds=${DS:-mazes}
+DEVICE=${DEVICE:-mps}
+export PYTHONUTF8=1
 mkdir -p $H
 log() { echo "[humo $(date '+%H:%M:%S')] $*"; }
 T0=$(date +%s)
@@ -14,7 +16,7 @@ $PY -m experiments.fotos_geo --dataset $ds --que hfs_val --out-root $H/fotos --n
 $PY -m experiments.fotos_geo --dataset $ds --que cf --seed 0 --split train --out-root $H/fotos --n-grids 4 >> $H/fotos.log 2>&1 || { log "FALLO fotos cf train"; exit 1; }
 $PY -m experiments.fotos_geo --dataset $ds --que cf --seed 0 --split validation --out-root $H/fotos --n-grids 4 >> $H/fotos.log 2>&1 || { log "FALLO fotos cf val"; exit 1; }
 $PY -m experiments.fotos_geo --dataset $ds --que cf --seed 2 --split train --out-root $H/fotos --n-grids 4 >> $H/fotos.log 2>&1 || { log "FALLO fotos cf s2"; exit 1; }
-for dev in cpu mps; do
+for dev in cpu $DEVICE; do
   out=runs; [ $dev = cpu ] && out=runs_cpu
   log "entrenamiento en $dev, 2 epocas, 48 fotos"
   $PY -m experiments.train_geo --dataset $ds --seed 0 --epochs 2 --device $dev --fotos-root $H/fotos --out-root $H/$out --max-fotos 48 --max-val 16 > $H/train_$dev.log 2>&1 || { log "FALLO train $dev, ver $H/train_$dev.log"; exit 1; }

@@ -10,4 +10,20 @@ results/*
 results/exp_geo/*
 !results/exp_geo/RESUMEN.md
 !results/exp_geo/limpieza.log
+# lo chico de exp_geo viaja con el repo para leer el RESUMEN desde cualquier maquina. fotos, pesos y humo quedan fuera
+!results/exp_geo/RESUMEN_auto.md
+!results/exp_geo/tablas.md
+!results/exp_geo/resumen.csv
+!results/exp_geo/seleccion.csv
+!results/exp_geo/base.json
+!results/exp_geo/maestro.log
+!results/exp_geo/curvas_entrenamiento.png
+!results/exp_geo/figuras/
+!results/exp_geo/barrido/
+!results/exp_geo/eval/
+!results/exp_geo/val/
+!results/exp_geo/metricas/
+!results/exp_geo/checks/
+!results/exp_geo/runs/
+!results/exp_geo/logs/
 estado*.txt
