@@ -1,0 +1,6 @@
+conjunto,busqueda,semillas,mapas,expansiones,relacion con h_fs,por semilla,exito,camino en mapas comunes del bloque,mapas comunes del bloque,camino en mapas propios,p contra h_fs
+gaps_and_forest,PHIL de exp_cf,0 1 2 3 4,91,7049.4,4.395,4.127 4.681 4.882 3.960 4.325,0.98,1.479,84,1.482,1.19e-16
+gaps_and_forest,cf_filtro de exp_cf2,0 1 2 3 4,91,783.5,0.488,0.510 0.487 0.519 0.450 0.476,1.0,1.051,84,1.053,1.45e-16
+multiple_bugtraps,PHIL de exp_cf,0 1 2 3 4,100,2185.9,1.939,1.761 2.203 1.582 2.209 1.942,0.942,1.165,90,1.174,1.95e-14
+multiple_bugtraps,cf_filtro de exp_cf2,0 1 2 3 4,100,986.4,0.875,0.932 0.862 0.847 0.870 0.865,1.0,1.157,90,1.194,2.6e-08
+mazes,PHIL de exp_cf,0 1 2 3 4,100,446.6,1.01,0.941 0.777 1.111 1.194 1.024,1.0,1.086,100,1.086,0.00237

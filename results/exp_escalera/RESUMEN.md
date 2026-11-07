@@ -2,6 +2,8 @@
 
 Carpeta tesis/code_v4, resultados en results/exp_escalera. Escrito a mano a partir de tablas.md, resumen.csv, escalera.csv, seleccion.csv, los train.csv y config.json de runs, figuras/alpha_stats.csv, figuras/alpha_mapas.csv, los csv de checks y eval, los csv de prueba de cf_filtro y el RESUMEN.md de exp_cf2 en code_v3, maestro.log, trabajos.log, logs/memoria.log y las horas de modificación de epoca_0.pt, listo y los csv de eval para la línea de tiempo. Todo número sale de esos archivos. El borrador automático está en RESUMEN_auto.md.
 
+Leo tomó el 2026-11-06 las cinco recomendaciones del final. Lo que se agregó después, las comparaciones R2 contra R0, phil_res_s contra cf_filtro y cf_filtro contra PHIL viejo, la pérdida de R0 y R1, los tiempos limpios y la tabla principal de la tesis, está en results/tesis. La sección de alpha de este resumen se rehízo con la semilla 1 en gaps_and_forest.
+
 ## En pocas líneas
 
 - La escalera corrió entera. 54 corridas, 6 peldaños por 3 conjuntos por 3 semillas, cada una con su prueba en los 100 mapas, en 823 minutos de reloj desde las 23h06 hasta las 12h50, con 0 fallos y 0 avisos de memoria.
@@ -9,7 +11,7 @@ Carpeta tesis/code_v4, resultados en results/exp_escalera. Escrito a mano a part
 - La CNN como entrada de PHIL lo empeora. R1 expande 5.047, 4.21 y 12.665 veces lo de h_fs y R0 expande 4.649, 2.339 y 1.509. R1 contra R0 no pasa en ningún conjunto.
 - La CNN como base cambia todo. R2 contra R1 baja 89.7, 79.0 y 92.0 % de las expansiones con p 0.0 y 3 de 3 semillas en los tres conjuntos.
 - Lo que la corrección aprendida gana en validación no pasa a prueba. 18 corridas de R2, R3, R4 y C eligieron una iteración aprendida que ganaba a cf_filtro en validación, entre 0.0 y 7.9 %. En prueba 9 quedaron mejor que cf_filtro de su misma semilla, 8 peor y 1 igual a tres decimales.
-- La compuerta solo se abre de verdad en mazes. C baja 3.0 % frente a cf_filtro en mazes con p 0.0 y gana en 71 de 100 mapas, pero con 2 de 3 semillas y por debajo del 5 %, así que no pasa. En gaps_and_forest alpha es 0 en todos los nodos y en multiple_bugtraps vale 0.0403 en promedio. En mazes alpha medio es 0.7535 en el primer 20 % de la búsqueda y 0 después del 60 %.
+- La compuerta solo se abre de verdad en mazes. C baja 3.0 % frente a cf_filtro en mazes con p 0.0 y gana en 71 de 100 mapas, pero con 2 de 3 semillas y por debajo del 5 %, así que no pasa. En gaps_and_forest, con la semilla 1, alpha vale 0.005 en promedio y en multiple_bugtraps 0.0403. En mazes alpha medio es 0.7535 en el primer 20 % de la búsqueda y 0 después del 60 %.
 - R1 se llevó más de la mitad del tiempo. Sus 9 corridas sumaron 1618.3 minutos de validación de 2910.8 en total y 487.9 minutos de prueba de 787.9, porque 122 de sus 126 validaciones perdieron mapas y 45 quedaron con la media en el tope de 10 000 expansiones.
 
 ## Cómo se corrió
@@ -227,11 +229,11 @@ Lo que se ve en las curvas.
 
 ## La compuerta y alpha
 
-alpha es el peso de phil_res_s en la heurística de C, 0 es la base de cf_filtro y 1 es phil_res_s. Se midió en los nodos evaluados de 10 mapas de prueba por conjunto, 9 en gaps_and_forest, con la corrida de la semilla 0, iteración elegida 0 en gaps_and_forest, 4 en multiple_bugtraps y 36 en mazes. De figuras/alpha_stats.csv.
+alpha es el peso de phil_res_s en la heurística de C, 0 es la base de cf_filtro y 1 es phil_res_s. Se midió en los nodos evaluados de 10 mapas de prueba por conjunto, 9 en gaps_and_forest. En gaps_and_forest con la corrida de la semilla 1, iteración elegida 12, y en los otros dos con la semilla 0, iteraciones 4 en multiple_bugtraps y 36 en mazes. La semilla 0 de gaps_and_forest quedó en la iteración 0, donde la última capa de la compuerta está en cero y alpha es 0 en todos los nodos por construcción, así que no dice nada de lo que aprendió la compuerta. Por eso la primera versión de estas tablas, con alpha 0 en gaps_and_forest, se rehízo con la semilla 1. De figuras/alpha_stats.csv.
 
 | conjunto | nodos | alpha medio | fracción de nodos con alpha mayor que 0 |
 |---|---|---|---|
-| gaps_and_forest | 18213 | 0.0 | 0.0 |
+| gaps_and_forest | 16732 | 0.005 | 1.0 |
 | multiple_bugtraps | 26078 | 0.0403 | 1.0 |
 | mazes | 12431 | 0.2503 | 0.3586 |
 
@@ -239,15 +241,15 @@ Por tramo de h_fs del nodo, en celdas.
 
 | conjunto | 0 a 50 | 50 a 100 | 100 a 200 | 200 a 400 |
 |---|---|---|---|---|
-| gaps_and_forest | 0.0 en 1564 nodos | 0.0 en 1531 | 0.0 en 15079 | 0.0 en 39 |
+| gaps_and_forest | 0.0036 en 1257 nodos | 0.0039 en 1524 | 0.0052 en 13761 | 0.0059 en 190 |
 | multiple_bugtraps | 0.0323 en 1608 | 0.0449 en 4402 | 0.0402 en 17663 | 0.0377 en 2405 |
 | mazes | 0.0 en 2376 | 0.0 en 2890 | 0.433 en 7125 | 0.6583 en 40 |
 
-Por tramo de avance de la búsqueda, expansiones hechas sobre las totales del mapa.
+Por tramo de avance de la búsqueda, contado en llamadas a la red. La llamada k de las K de un mapa tiene avance k sobre K menos 1, y las expansiones que no abren nodos nuevos y la de la meta no llaman a la red.
 
 | conjunto | 0 a 20 % | 20 a 40 % | 40 a 60 % | 60 a 80 % | 80 a 100 % |
 |---|---|---|---|---|---|
-| gaps_and_forest | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| gaps_and_forest | 0.0061 | 0.0056 | 0.0052 | 0.0044 | 0.0037 |
 | multiple_bugtraps | 0.0447 | 0.0454 | 0.0405 | 0.0394 | 0.0321 |
 | mazes | 0.7535 | 0.4725 | 0.0533 | 0.0 | 0.0 |
 
@@ -261,7 +263,7 @@ Por tramo de avance de la búsqueda, expansiones hechas sobre las totales del ma
 
 Lo que se ve.
 
-- En gaps_and_forest alpha es 0 exacto porque la corrida de la semilla 0 quedó en la iteración 0, donde la última capa de la compuerta está en cero. Las semillas 1 y 2 eligieron las iteraciones 12 y 4 y en prueba dieron 1.020 y 1.000 de cf_filtro.
+- En gaps_and_forest, con la semilla 1, la compuerta está abierta en todos los nodos pero casi cerrada, alpha entre 0.0036 y 0.0061 según el tramo y máximo 0.0077 en los 9 mapas. Es casi la base pura, y en prueba esa semilla dio 1.020 de cf_filtro. La semilla 0 quedó en la iteración 0 con alpha 0 por construcción, y la semilla 2 eligió la iteración 4 y en prueba dio 1.000 de cf_filtro.
 - En multiple_bugtraps la compuerta está abierta en todos los nodos pero casi cerrada, alpha entre 0.0321 y 0.0454 según el tramo y máximo 0.0768 en los 10 mapas. Es una mezcla casi constante de 4 % de phil_res_s y 96 % de base, que en prueba quedó 1.9 % peor que la base en la semilla 0.
 - En mazes la compuerta se abre al principio de la búsqueda y lejos de la meta. alpha medio 0.7535 en el primer 20 % de la búsqueda, 0.4725 en el segundo, 0.0533 en el tercero y 0 después. Por h_fs es 0 debajo de 100 celdas, 0.433 entre 100 y 200 y 0.6583 entre 200 y 400. El máximo es 0.8451, nunca llega a 1. En los mapas de figuras/alpha_mazes.png el tramo amarillo es el arranque en la esquina de abajo y el tramo violeta es el resto del camino. En prueba C vale 0.981 en mazes y phil_res_s solo vale 0.934, así que la compuerta usa a PHIL menos de lo que convendría ahí.
 
@@ -327,7 +329,7 @@ Memoria. El vigía anotó 768 latidos desde las 23h08 hasta las 12h50, 0 avisos,
 - La exactitud de la iteración 0. R2, R3, R4 y C arrancan en cf_filtro, con el mismo conjunto de nodos expandidos y el mismo camino en cada mapa de validación de las 9 parejas de conjunto y semilla, y las corridas que quedaron en cf_filtro reproducen el csv de prueba de la Mac en 13 de 18 casos y difieren en 2 o 3 mapas en los otros 5.
 - La selección con vuelta a cf_filtro. Ningún peldaño con base quedó más de 2.7 % peor que cf_filtro en prueba en ningún conjunto, aunque 29 de sus 36 corridas se derrumbaron y se cortaron.
 - La pregunta quedó respondida con margen. R3 contra R2, R4 contra R3 y R5 contra R4 pasan en los 3 conjuntos con diferencias de 1.9 % o menos, y R2 contra R1 pasa con 79 a 92 %.
-- La compuerta muestra dónde PHIL sirve. Solo se abre de verdad en mazes, al principio de la búsqueda y con h_fs grande, que es el único conjunto donde phil_res_s le gana a cf_filtro. En multiple_bugtraps queda en 0.04 y en gaps_and_forest en 0.
+- La compuerta muestra dónde PHIL sirve. Solo se abre de verdad en mazes, al principio de la búsqueda y con h_fs grande, que es el único conjunto donde phil_res_s le gana a cf_filtro. En multiple_bugtraps queda en 0.04 y en gaps_and_forest en 0.005.
 
 ## Qué no funcionó
 

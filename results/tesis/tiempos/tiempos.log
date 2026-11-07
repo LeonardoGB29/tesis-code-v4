@@ -1,0 +1,57 @@
+[gaps_and_forest/cf_filtro_s0] n=1 exp=781.0 ms/nodo=3.774 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[gaps_and_forest/cf_filtro_s0] n=2 exp=698.0 ms/nodo=3.688 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\nucleo_0.csv
+[gaps_and_forest/cf_filtro_s0] n=1 exp=781.0 ms/nodo=3.879 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[gaps_and_forest/cf_filtro_s0] n=2 exp=698.0 ms/nodo=3.961 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\nucleo_2.csv
+[gaps_and_forest/cf_filtro_s0] n=1 exp=781.0 ms/nodo=3.898 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[gaps_and_forest/cf_filtro_s0] n=2 exp=698.0 ms/nodo=3.863 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\nucleo_4.csv
+[gaps_and_forest/cf_filtro_s0] n=1 exp=781.0 ms/nodo=3.854 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[gaps_and_forest/cf_filtro_s0] n=2 exp=698.0 ms/nodo=4.139 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\nucleo_10.csv
+[gaps_and_forest/cf_filtro_s0] n=1 exp=781.0 ms/nodo=9.097 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[gaps_and_forest/cf_filtro_s0] n=2 exp=698.0 ms/nodo=9.144 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\nucleo_12.csv
+[gaps_and_forest/cf_filtro_s0] n=1 exp=781.0 ms/nodo=9.150 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[gaps_and_forest/cf_filtro_s0] n=2 exp=698.0 ms/nodo=9.138 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\nucleo_14.csv
+[gaps_and_forest/cf_filtro_s0] n=1 exp=781.0 ms/nodo=9.116 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[gaps_and_forest/cf_filtro_s0] n=2 exp=698.0 ms/nodo=9.069 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\nucleo_16.csv
+[gaps_and_forest/cf_filtro_s0] n=1 exp=781.0 ms/nodo=9.266 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[gaps_and_forest/cf_filtro_s0] n=2 exp=698.0 ms/nodo=9.032 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\nucleo_19.csv
+nucleo fijo 4, afinidad aceptada True
+[gaps_and_forest/voraz_hstar] n=2 exp=437.5 ms/nodo=0.003 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[gaps_and_forest/voraz_hstar] n=91 exp=474.0 ms/nodo=0.003 -> results\tesis\tiempos\cpu\gaps_and_forest\voraz_hstar.csv
+[gaps_and_forest/voraz_hfs] n=2 exp=1633.0 ms/nodo=0.382 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[gaps_and_forest/voraz_hfs] n=91 exp=1604.0 ms/nodo=0.399 -> results\tesis\tiempos\cpu\gaps_and_forest\voraz_hfs.csv
+[gaps_and_forest/phil_viejo_s0] falta D:\Archivos\10MO SEMESTRE\tesis\code_v3\results\exp_cf\phil\runs\gaps_and_forest\phil_s_s0\best.pt, no se mide
+[gaps_and_forest/R0_s0] n=2 exp=5446.5 ms/nodo=0.527 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[gaps_and_forest/R0_s0] n=91 exp=6582.2 ms/nodo=0.507 -> results\tesis\tiempos\cpu\gaps_and_forest\R0_s0.csv
+[gaps_and_forest/phil_res_s_s0] n=2 exp=1590.5 ms/nodo=1.279 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[gaps_and_forest/phil_res_s_s0] n=91 exp=1560.6 ms/nodo=1.098 -> results\tesis\tiempos\cpu\gaps_and_forest\phil_res_s_s0.csv
+[gaps_and_forest/cf_filtro_s0] n=2 exp=698.0 ms/nodo=3.765 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[gaps_and_forest/cf_filtro_s0] n=91 exp=818.0 ms/nodo=3.930 -> results\tesis\tiempos\cpu\gaps_and_forest\cf_filtro_s0.csv
+[multiple_bugtraps/voraz_hstar] n=2 exp=281.5 ms/nodo=0.003 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[multiple_bugtraps/voraz_hstar] n=100 exp=268.7 ms/nodo=0.003 -> results\tesis\tiempos\cpu\multiple_bugtraps\voraz_hstar.csv
+[multiple_bugtraps/voraz_hfs] n=2 exp=1268.5 ms/nodo=0.390 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[multiple_bugtraps/voraz_hfs] n=100 exp=1127.3 ms/nodo=0.384 -> results\tesis\tiempos\cpu\multiple_bugtraps\voraz_hfs.csv
+[multiple_bugtraps/phil_viejo_s0] falta D:\Archivos\10MO SEMESTRE\tesis\code_v3\results\exp_cf\phil\runs\multiple_bugtraps\phil_s_s0\best.pt, no se mide
+[multiple_bugtraps/R0_s0] n=2 exp=4052.0 ms/nodo=0.648 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[multiple_bugtraps/R0_s0] n=100 exp=2149.1 ms/nodo=0.675 -> results\tesis\tiempos\cpu\multiple_bugtraps\R0_s0.csv
+[multiple_bugtraps/phil_res_s_s0] n=2 exp=821.5 ms/nodo=1.099 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[multiple_bugtraps/phil_res_s_s0] n=100 exp=1096.6 ms/nodo=1.071 -> results\tesis\tiempos\cpu\multiple_bugtraps\phil_res_s_s0.csv
+[multiple_bugtraps/cf_filtro_s0] n=2 exp=1124.0 ms/nodo=4.480 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[multiple_bugtraps/cf_filtro_s0] n=100 exp=1050.4 ms/nodo=4.391 -> results\tesis\tiempos\cpu\multiple_bugtraps\cf_filtro_s0.csv
+[mazes/voraz_hstar] n=2 exp=258.0 ms/nodo=0.003 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[mazes/voraz_hstar] n=100 exp=267.7 ms/nodo=0.003 -> results\tesis\tiempos\cpu\mazes\voraz_hstar.csv
+[mazes/voraz_hfs] n=2 exp=484.5 ms/nodo=0.330 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[mazes/voraz_hfs] n=100 exp=442.4 ms/nodo=0.354 -> results\tesis\tiempos\cpu\mazes\voraz_hfs.csv
+[mazes/phil_viejo_s0] falta D:\Archivos\10MO SEMESTRE\tesis\code_v3\results\exp_cf\phil\runs\mazes\phil_s_s0\best.pt, no se mide
+[mazes/R0_s0] n=2 exp=401.0 ms/nodo=0.726 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[mazes/R0_s0] n=100 exp=538.8 ms/nodo=0.705 -> results\tesis\tiempos\cpu\mazes\R0_s0.csv
+[mazes/phil_res_s_s0] n=2 exp=390.0 ms/nodo=1.093 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[mazes/phil_res_s_s0] n=100 exp=407.9 ms/nodo=1.128 -> results\tesis\tiempos\cpu\mazes\phil_res_s_s0.csv
+[mazes/cf_filtro_s0] n=2 exp=389.0 ms/nodo=3.574 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[mazes/cf_filtro_s0] n=100 exp=466.1 ms/nodo=3.641 -> results\tesis\tiempos\cpu\mazes\cf_filtro_s0.csv
+[gaps_and_forest/cf_filtro_s0] n=2 exp=698.5 ms/nodo=0.862 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[gaps_and_forest/cf_filtro_s0] n=91 exp=820.2 ms/nodo=0.540 -> results\tesis\tiempos\cuda\gaps_and_forest\cf_filtro_s0.csv
+[multiple_bugtraps/cf_filtro_s0] n=2 exp=1126.0 ms/nodo=0.649 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[multiple_bugtraps/cf_filtro_s0] n=100 exp=1047.8 ms/nodo=0.639 -> results\tesis\tiempos\cuda\multiple_bugtraps\cf_filtro_s0.csv
+[mazes/cf_filtro_s0] n=2 exp=389.0 ms/nodo=0.585 -> C:\Users\leogu\AppData\Local\Temp\tmplytnhng4\calentar.csv
+[mazes/cf_filtro_s0] n=100 exp=466.4 ms/nodo=0.571 -> results\tesis\tiempos\cuda\mazes\cf_filtro_s0.csv
+-> results\tesis\tiempos

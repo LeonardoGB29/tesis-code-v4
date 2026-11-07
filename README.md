@@ -103,3 +103,23 @@ DEVICE=cuda PARALLEL=5 nohup bash experiments/run_escalera.sh >> results/exp_esc
 En Mac va con caffeinate y DEVICE=mps, en Windows con experiments/despierto.py al lado. El maestro corre las pruebas, las verificaciones por conjunto y semilla, la cola de entrenamiento con la prueba de cada corrida apenas termina, y el resumen con las figuras. Variables, PARALLEL, PELDANOS, SEEDS, DATASETS, NITER, VALEVERY, VALDENSO y VALTARDE, que fijan el calendario de validación, cada VALEVERY iteraciones hasta VALDENSO y cada VALTARDE después. Es relanzable con la misma orden y no repite nada listo.
 
 Todo queda en results/exp_escalera. Corridas en runs/<conjunto>/<peldaño>_s<semilla>, prueba en eval, verificaciones en checks, tablas en tablas.md, escalera.csv y seleccion.csv, figuras en figuras y curvas_validacion.png, borrador en RESUMEN_auto.md y el RESUMEN.md a mano.
+
+## results/tesis
+
+Cierre para la tesis, sin entrenar nada. experiments/tiempos_limpios.py mide en un solo proceso y con un hilo de torch, uno detrás del otro, la voraz con h* y con h_fs, R0, phil_res_s y cf_filtro de la semilla 0 en los mapas de prueba, con el mismo código de la prueba, y cf_filtro otra vez con la U-Net en CUDA. Conviene correrlo con la máquina sola y despierto.py vigilando results/tesis/tiempos. En un procesador con núcleos de rendimiento y de eficiencia, como el i7-12700H de esta laptop, windows mueve el proceso entre los dos y la U-Net cuesta más del doble en uno de eficiencia, así que el proceso se fija a un núcleo de rendimiento con --nucleo, y --probar-nucleos deja el costo en cada núcleo en nucleos.csv.
+
+```bash
+.venv/bin/python -m experiments.tiempos_limpios --out results/tesis/tiempos --nucleo 4 --probar-nucleos 0 2 4 10 12 14 16 19
+```
+
+El PHIL viejo de exp_cf se evaluó en la Mac desde results/exp_cf/base/runs/<conjunto>/phil_s_s0/best.pt, que no vino en los tar. Si se copian a esa misma ruta bajo code_v3, esto mide solo ese método y deja los demás tiempos como están.
+
+```bash
+.venv/bin/python -m experiments.tiempos_limpios --out results/tesis/tiempos --nucleo 4 --metodos phil_viejo_s0
+```
+
+experiments/tesis.py lee los csv de prueba de code_v3 y de exp_escalera, los train.csv de R0 y R1 y los tiempos limpios, y escribe la tabla principal, las cifras con 5 semillas, las comparaciones nuevas en el formato de escalera.csv, el chequeo del p de mazes de exp_cf2, la pérdida de R0 y R1, el resumen de tiempos, tablas.md y las figuras. El mapa de alpha de gaps_and_forest usa la semilla 1 de C, que es lo que hace por defecto experiments/figuras_escalera.py.
+
+```bash
+.venv/bin/python -m experiments.tesis --out results/tesis
+```

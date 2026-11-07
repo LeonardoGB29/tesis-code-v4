@@ -1,5 +1,7 @@
 # exp_escalera. mapas de alpha de la compuerta C en mapas de prueba y alpha medio por tramo de h_fs del nodo y de avance de la busqueda
-#   python -m experiments.figuras_escalera --root results/exp_escalera [--seed 0 --n 3 --n-tramos 10 --device cpu]
+#   python -m experiments.figuras_escalera --root results/exp_escalera [--seed 0 --seed-ds gaps_and_forest=1 --n 3 --n-tramos 10 --device cpu]
+# en gaps_and_forest la semilla 0 de C quedo en la iteracion 0, donde la ultima capa de la compuerta esta en cero y alpha es 0 por construccion,
+# asi que ahi se usa la semilla 1, iteracion 12. en los otros dos conjuntos va la semilla 0
 import argparse
 from pathlib import Path
 
@@ -34,17 +36,21 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--root", default=str(ROOT_ESC))
     p.add_argument("--seed", type=int, default=0)
+    p.add_argument("--seed-ds", nargs="*", default=["gaps_and_forest=1"], help="semilla por conjunto, conjunto=semilla")
     p.add_argument("--n", type=int, default=3)
     p.add_argument("--n-tramos", type=int, default=10)
     p.add_argument("--device", default="cpu")
     a = p.parse_args()
+    semillas = {ds: a.seed for ds in DATASETS}
+    semillas.update({k: int(v) for k, v in (x.split("=") for x in a.seed_ds)})
     set_threads(1)
     root = Path(a.root)
     (root / "figuras").mkdir(exist_ok=True)
     filas, stats = [], []
     por_ds = {}
     for ds in DATASETS:
-        ck = root / "runs" / ds / f"C_s{a.seed}" / "best.pt"
+        seed = semillas[ds]
+        ck = root / "runs" / ds / f"C_s{seed}" / "best.pt"
         if not ck.exists():
             print(f"[{ds}] sin compuerta en {ck}", flush=True)
             continue
@@ -61,7 +67,7 @@ def main():
                 acum["hfs"][t].append(al[(hfs >= t[0]) & (hfs < t[1])])
             for t in TRAMOS_AVANCE:
                 acum["avance"][t].append(al[(avance >= t[0]) & (avance < t[1])])
-            filas.append([ds, gp.name, a.seed, raw.get("iteration"), res.n_expanded, int(h_star[v_s]), len(res.path) - 1 if res.path else "", len(al),
+            filas.append([ds, gp.name, seed, raw.get("iteration"), res.n_expanded, int(h_star[v_s]), len(res.path) - 1 if res.path else "", len(al),
                           round(float(al.mean()), 4) if len(al) else "", round(float((al > 0).mean()), 4) if len(al) else "", round(float(al.max()), 4) if len(al) else ""])
             if k < a.n:
                 ev = model.ev
@@ -75,7 +81,7 @@ def main():
                 ax.imshow(np.where(exp, 1.0, np.nan), cmap="autumn", alpha=0.5, vmin=0, vmax=1, interpolation="nearest")
                 if res.path:
                     pth = rcm[np.array(res.path)]; ax.plot(pth[:, 1], pth[:, 0], color="lime", lw=1)
-                ax.set_title(f"{ds} {gp.name}, C s{a.seed} iteracion {raw.get('iteration')}, exp {res.n_expanded}, optimo {int(h_star[v_s])}", fontsize=9)
+                ax.set_title(f"{ds} {gp.name}, C s{seed} iteracion {raw.get('iteration')}, exp {res.n_expanded}, optimo {int(h_star[v_s])}", fontsize=9)
                 ax = axes[k, 1]
                 ax.imshow(np.where(visto, estado, np.nan), cmap="gray", vmin=0, vmax=1, interpolation="nearest", alpha=0.35)
                 amap = np.full((H, W), np.nan)
@@ -91,14 +97,14 @@ def main():
         plt.close(fig)
         por_ds[ds] = acum
         todo = np.concatenate(acum["todo"]) if acum["todo"] else np.zeros(0)
-        stats.append([ds, "todo", "", len(todo), round(float(todo.mean()), 4) if len(todo) else "", round(float((todo > 0).mean()), 4) if len(todo) else ""])
+        stats.append([ds, "todo", "", len(todo), round(float(todo.mean()), 4) if len(todo) else "", round(float((todo > 0).mean()), 4) if len(todo) else "", seed, raw.get("iteration")])
         for nombre, tr in (("hfs", TRAMOS_HFS), ("avance", TRAMOS_AVANCE)):
             for t in tr:
                 v = np.concatenate(acum[nombre][t]) if acum[nombre][t] else np.zeros(0)
-                stats.append([ds, nombre, f"{t[0]:g} a {t[1]:g}" if t[1] < 10 ** 8 else f"{t[0]:g} o mas", len(v), round(float(v.mean()), 4) if len(v) else "", round(float((v > 0).mean()), 4) if len(v) else ""])
+                stats.append([ds, nombre, f"{t[0]:g} a {t[1]:g}" if t[1] < 10 ** 8 else f"{t[0]:g} o mas", len(v), round(float(v.mean()), 4) if len(v) else "", round(float((v > 0).mean()), 4) if len(v) else "", seed, raw.get("iteration")])
         print(f"[{ds}] alpha medio {float(todo.mean()) if len(todo) else 0:.4f} en {len(todo)} nodos de {len(grids)} mapas", flush=True)
     write_csv(root / "figuras" / "alpha_mapas.csv", ["dataset", "grid", "seed", "iteracion", "exp", "optimo", "camino", "nodos", "alpha_medio", "frac_alpha_pos", "alpha_max"], filas)
-    write_csv(root / "figuras" / "alpha_stats.csv", ["dataset", "tramo_de", "tramo", "nodos", "alpha_medio", "frac_alpha_pos"], stats)
+    write_csv(root / "figuras" / "alpha_stats.csv", ["dataset", "tramo_de", "tramo", "nodos", "alpha_medio", "frac_alpha_pos", "seed", "iteracion"], stats)
     if por_ds:
         fig, axes = plt.subplots(1, 2, figsize=(13, 4.5))
         for ds, col in zip(DATASETS, ["C0", "C1", "C2"]):
@@ -106,7 +112,7 @@ def main():
                 continue
             for ax, nombre, tr in ((axes[0], "hfs", TRAMOS_HFS), (axes[1], "avance", TRAMOS_AVANCE)):
                 ys = [float(np.concatenate(por_ds[ds][nombre][t]).mean()) if por_ds[ds][nombre][t] and len(np.concatenate(por_ds[ds][nombre][t])) else np.nan for t in tr]
-                ax.plot(range(len(tr)), ys, marker="o", color=col, label=ds)
+                ax.plot(range(len(tr)), ys, marker="o", color=col, label=f"{ds}, semilla {semillas[ds]}")
         axes[0].set_xticks(range(len(TRAMOS_HFS))); axes[0].set_xticklabels([f"{t[0]:g} a {t[1]:g}" if t[1] < 10 ** 8 else f"{t[0]:g} o mas" for t in TRAMOS_HFS])
         axes[0].set_xlabel("h_fs del nodo en celdas"); axes[0].set_ylabel("alpha medio"); axes[0].set_title("alpha de la compuerta por tramo de h_fs")
         axes[1].set_xticks(range(len(TRAMOS_AVANCE))); axes[1].set_xticklabels([f"{int(100 * t[0])} a {int(100 * min(t[1], 1))} %" for t in TRAMOS_AVANCE])

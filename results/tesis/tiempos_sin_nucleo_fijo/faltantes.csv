@@ -1,0 +1,4 @@
+dataset,metodo,dispositivo,motivo,ruta
+gaps_and_forest,phil_viejo_s0,cpu,no hay checkpoint en esta maquina,D:\Archivos\10MO SEMESTRE\tesis\code_v3\results\exp_cf\phil\runs\gaps_and_forest\phil_s_s0\best.pt
+multiple_bugtraps,phil_viejo_s0,cpu,no hay checkpoint en esta maquina,D:\Archivos\10MO SEMESTRE\tesis\code_v3\results\exp_cf\phil\runs\multiple_bugtraps\phil_s_s0\best.pt
+mazes,phil_viejo_s0,cpu,no hay checkpoint en esta maquina,D:\Archivos\10MO SEMESTRE\tesis\code_v3\results\exp_cf\phil\runs\mazes\phil_s_s0\best.pt

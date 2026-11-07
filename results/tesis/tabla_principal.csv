@@ -1,0 +1,16 @@
+conjunto,busqueda,semillas,mapas,expansiones,relacion con h_fs,por semilla,exito,camino sobre optimo en mapas comunes,p contra h_fs,ms por nodo
+gaps_and_forest,voraz con h* (techo),0,91,474.0,0.296,0.296,1.0,1.0,1.19e-16,0.003
+gaps_and_forest,voraz con h_fs,0,91,1604.0,1.0,1.000,1.0,1.271,,0.399
+gaps_and_forest,PHIL de exp_cf,0 1 2,91,7319.4,4.563,4.127 4.681 4.882,0.993,1.512,1.19e-16,sin checkpoint
+gaps_and_forest,phil_res_s de exp_cf,0 1 2,91,1571.2,0.98,0.973 0.980 0.986,1.0,1.267,4.03e-08,1.098
+gaps_and_forest,cf_filtro de exp_cf2,0 1 2,91,810.5,0.505,0.510 0.487 0.519,1.0,1.05,1.45e-16,3.93
+multiple_bugtraps,voraz con h* (techo),0,100,268.7,0.238,0.238,1.0,1.0,5.45e-16,0.003
+multiple_bugtraps,voraz con h_fs,0,100,1127.3,1.0,1.000,1.0,1.161,,0.384
+multiple_bugtraps,PHIL de exp_cf,0 1 2,100,2083.8,1.848,1.761 2.203 1.582,0.943,1.176,2.24e-09,sin checkpoint
+multiple_bugtraps,phil_res_s de exp_cf,0 1 2,100,1110.5,0.985,0.979 0.998 0.978,1.0,1.176,1.65e-10,1.071
+multiple_bugtraps,cf_filtro de exp_cf2,0 1 2,100,992.3,0.88,0.932 0.862 0.847,1.0,1.157,2.6e-08,4.391
+mazes,voraz con h* (techo),0,100,267.7,0.605,0.605,1.0,1.0,1.12e-12,0.003
+mazes,voraz con h_fs,0,100,442.4,1.0,1.000,1.0,1.084,,0.354
+mazes,PHIL de exp_cf,0 1 2,100,417.2,0.943,0.941 0.777 1.111,1.0,1.099,0.312,sin checkpoint
+mazes,phil_res_s de exp_cf,0 1 2,100,413.2,0.934,0.922 0.959 0.921,1.0,1.061,2.4e-12,1.128
+mazes,cf_filtro de exp_cf2,0 1 2,100,447.6,1.012,1.053 0.982 1.000,1.0,1.07,0.00184,3.641

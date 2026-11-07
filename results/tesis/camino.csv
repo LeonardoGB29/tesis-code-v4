@@ -1,0 +1,16 @@
+conjunto,busqueda,semillas,camino en mapas comunes,mapas comunes,camino en mapas propios,exito
+gaps_and_forest,voraz con h* (techo),0,1.0,89,1.0,1.0
+gaps_and_forest,voraz con h_fs,0,1.271,89,1.271,1.0
+gaps_and_forest,PHIL de exp_cf,0 1 2,1.512,89,1.513,0.993
+gaps_and_forest,phil_res_s de exp_cf,0 1 2,1.267,89,1.269,1.0
+gaps_and_forest,cf_filtro de exp_cf2,0 1 2,1.05,89,1.05,1.0
+multiple_bugtraps,voraz con h* (techo),0,1.0,92,1.0,1.0
+multiple_bugtraps,voraz con h_fs,0,1.161,92,1.198,1.0
+multiple_bugtraps,PHIL de exp_cf,0 1 2,1.176,92,1.178,0.943
+multiple_bugtraps,phil_res_s de exp_cf,0 1 2,1.176,92,1.212,1.0
+multiple_bugtraps,cf_filtro de exp_cf2,0 1 2,1.157,92,1.195,1.0
+mazes,voraz con h* (techo),0,1.0,100,1.0,1.0
+mazes,voraz con h_fs,0,1.084,100,1.084,1.0
+mazes,PHIL de exp_cf,0 1 2,1.099,100,1.099,1.0
+mazes,phil_res_s de exp_cf,0 1 2,1.061,100,1.061,1.0
+mazes,cf_filtro de exp_cf2,0 1 2,1.07,100,1.07,1.0

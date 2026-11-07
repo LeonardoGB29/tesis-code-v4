@@ -1,0 +1,13 @@
+clave,valor
+inicio,2026-11-06 21:52:25
+fin,2026-11-06 22:28:45
+procesador,12th Gen Intel(R) Core(TM) i7-12700H
+gpu,NVIDIA GeForce RTX 4070 Laptop GPU
+python,3.14.0
+torch,2.12.0+cu130
+hilos de torch,1
+procesos,1
+nucleo logico fijo,4
+enchufada,1
+mapas por conjunto,todos los de prueba
+calentamiento,"2 mapas por metodo, no se guardan"

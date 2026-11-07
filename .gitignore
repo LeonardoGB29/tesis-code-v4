@@ -43,4 +43,6 @@ results/exp_escalera/*
 !results/exp_escalera/checks/
 !results/exp_escalera/runs/
 !results/exp_escalera/logs/
+# tesis, tabla principal, comparaciones, tiempos limpios y figuras, todo liviano
+!results/tesis/
 estado*.txt

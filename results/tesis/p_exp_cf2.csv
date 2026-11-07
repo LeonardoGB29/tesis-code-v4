@@ -1,0 +1,10 @@
+modelo,conjunto,semillas,p en el RESUMEN de exp_cf2,p de expansiones,p de camino,coincide con,relacion con h_fs,expansiones,expansiones voraz con h_fs,camino,camino voraz con h_fs,mapas del p de camino,mapas con el camino empatado,p de camino con pratt
+PHIL,gaps_and_forest,0 1 2 3 4,1e-16,1.192e-16,1.711e-15,expansiones,4.395,7049.4,1604.0,1.482,1.268,84,0,1.711e-15
+PHIL,multiple_bugtraps,0 1 2 3 4,1e-16,1.95e-14,0.01909,ninguno,1.939,2185.9,1127.3,1.174,1.16,90,0,0.01909
+PHIL,mazes,0 1 2 3 4,0.0024,0.00237,0.757,expansiones,1.01,446.6,442.4,1.086,1.084,100,0,0.757
+phil_res_s,gaps_and_forest,0 1 2,1e-16,4.027e-08,0.5291,ninguno,0.98,1571.2,1604.0,1.269,1.271,91,0,0.5291
+phil_res_s,multiple_bugtraps,0 1 2,1e-16,1.648e-10,2.521e-06,ninguno,0.985,1110.5,1127.3,1.212,1.198,100,13,4.22e-07
+phil_res_s,mazes,0 1 2,1e-16,2.4e-12,1.474e-05,ninguno,0.934,413.2,442.4,1.061,1.084,100,58,0.00388
+cf_filtro,gaps_and_forest,0 1 2 3 4,1e-16,1.455e-16,1.192e-16,expansiones y camino,0.488,783.5,1604.0,1.053,1.271,91,0,1.192e-16
+cf_filtro,multiple_bugtraps,0 1 2 3 4,3e-08,2.595e-08,0.0006566,expansiones,0.875,986.4,1127.3,1.194,1.198,100,13,5.195e-05
+cf_filtro,mazes,0 1 2,0.0018,0.001838,0.001805,expansiones y camino,1.012,447.6,442.4,1.07,1.084,100,47,0.0875
