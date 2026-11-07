@@ -1,0 +1,4 @@
+dataset,seed,grid,R2_columnas_iguales,R2_salida_igual,R2_cambia_si_cambia_lo_visto,C_columnas_iguales,C_salida_igual,C_cambia_si_cambia_lo_visto
+multiple_bugtraps,0,900.png,1,1,1,1,1,1
+multiple_bugtraps,0,901.png,1,1,1,1,1,1
+multiple_bugtraps,0,902.png,1,1,1,1,1,1

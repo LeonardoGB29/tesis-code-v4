@@ -1,0 +1,6 @@
+dataset,seed,brazo,mapas,exp_media,secs_por_mapa,ms_por_nodo
+gaps_and_forest,1,cf_filtro,65,821.4,0.973,1.184
+gaps_and_forest,1,R2,65,821.4,2.702,3.289
+gaps_and_forest,1,R3,65,821.4,2.541,3.093
+gaps_and_forest,1,R4,65,821.4,1.933,2.353
+gaps_and_forest,1,C,65,821.4,2.913,3.546

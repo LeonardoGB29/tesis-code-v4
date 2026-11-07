@@ -1,0 +1,6 @@
+dataset,seed,brazo,mapas,exp_media,secs_por_mapa,ms_por_nodo
+mazes,2,cf_filtro,70,523.1,0.394,0.753
+mazes,2,R2,70,523.1,0.92,1.76
+mazes,2,R3,70,523.1,0.868,1.66
+mazes,2,R4,70,523.1,0.703,1.343
+mazes,2,C,70,523.1,1.002,1.917

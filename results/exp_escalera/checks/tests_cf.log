@@ -1,0 +1,16 @@
+ok cf = 1 reproduce la voraz con h_fs
+ok cf* reproduce la voraz con h*
+ok cf* en (0, 1], 25750 celdas, min 0.242
+ok la red solo ve lo descubierto
+ok la epoca 0 de cf_global y cf_local reproduce la voraz con h_fs
+ok simetrias
+ok global entrena: 0.1947 -> 0.1847
+ok local entrena: 0.1947 -> 0.1851
+ok gnn entrena 0.2227 -> 0.2116 y busca (229 exp)
+ok guardar, cargar y unir
+ok el filtro dentro del modelo es gaussian_filter con mode nearest
+ok cf_filtro y cf_grueso arrancan en 0.5 exacto y su epoca 0 reproduce la voraz con h_fs
+ok filtro entrena 0.2270 -> 0.2162 y el gradiente llega a la cabeza
+ok gruesa entrena 0.2270 -> 0.1427 y el gradiente llega a la cabeza
+ok guardar y cargar conservan la salida filtro y gruesa
+13/13 pruebas ok

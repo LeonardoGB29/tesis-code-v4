@@ -68,6 +68,10 @@ def hstar_mapa(data, h_star):
 def load_phil(ckpt_path, device="cpu"):
     raw = torch.load(ckpt_path, map_location="cpu", weights_only=False)
     c = raw["config"]
+    if c.get("peldano") or raw.get("extra", {}).get("peldano"):     # exp_escalera: R0 a R4 y C
+        from src.cf.escalera import construir_desde
+        model, cfg = construir_desde(raw, device)
+        return model, cfg, raw
     if "cf_ckpt" in c:                                              # exp_mem: phil_res_cf, PHIL sobre cf_filtro congelado
         from src.cf.phil_res import PhilResCF, ResCfConfig
         cfg = ResCfConfig.from_dict(c)

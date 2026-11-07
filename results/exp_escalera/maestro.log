@@ -1,0 +1,11 @@
+[maestro 2026-11-05 23:06:57] inicio, NITER=108 VALEVERY=4 VALDENSO=24 VALTARDE=12 DEVICE=cuda PARALLEL=5 SEEDS=0 1 2 PELDANOS=R2 R4 R1 R0 R3 C DATASETS=gaps_and_forest multiple_bugtraps mazes, maquina MINGW64_NT-10.0-26200 x86_64
+[maestro 2026-11-05 23:06:58] pruebas
+[maestro 2026-11-05 23:11:07] pruebas ok
+[maestro 2026-11-05 23:11:07] verificaciones previas, 3 a la vez
+[maestro 2026-11-05 23:36:20] verificaciones hechas
+[maestro 2026-11-05 23:36:22] cola de 54 trabajos, 5 a la vez, validacion cada 4 hasta la 24 y cada 12 despues
+[maestro 2026-11-06 12:47:51] cola lista, fallos en trabajos.log 0
+0
+[maestro 2026-11-06 12:47:54] resumen y figuras
+[maestro 2026-11-06 12:50:54] fin, 823 minutos, fallos en trabajos.log 0
+0

@@ -1,6 +1,6 @@
-# code_v4. exp_geo, geometría para PHIL en mapa oculto
+# code_v4. exp_geo y exp_escalera, geometría y escalera entre PHIL y la CNN en mapa oculto
 
-Código de la tesis sobre heurísticas aprendidas para búsqueda voraz best-first en grillas de 201 por 201 con mapa oculto. Esta carpeta corre el experimento exp_geo, una CNN que adivina los obstáculos no vistos y una heurística h_geo que la usa.txt.
+Código de la tesis sobre heurísticas aprendidas para búsqueda voraz best-first en grillas de 201 por 201 con mapa oculto. Esta carpeta corre dos experimentos. exp_geo, una CNN que adivina los obstáculos no vistos y una heurística h_geo que la usa. Y exp_escalera, una escalera de peldaños entre PHIL solo y la CNN de cf_filtro sola.txt de su carpeta.
 
 ## Qué hace falta para correrlo en otra máquina
 
@@ -83,3 +83,23 @@ nohup .venv/bin/python experiments/despierto.py results/exp_geo > results/exp_ge
 ## Dónde queda cada cosa
 
 Todo en results/exp_geo. Fotos nuevas en fotos, entrenamientos en runs, barrido de lambda en barrido, prueba en eval, métricas de la CNN en metricas, verificaciones en checks, tablas en tablas.md y el borrador del informe en RESUMEN_auto.md. El RESUMEN.md se escribe a mano al final.
+
+## exp_escalera
+
+Escalera de reemplazo entre PHIL y la CNN. R0 es PHIL original, R1 PHIL con las 43 columnas de la CNN de entrada, R2, R3 y R4 corrigen la base h_fs / cf de cf_filtro con f, GNN, GRU y MLP, sin GRU, y sin GNN ni GRU, R5 es cf_filtro y C una compuerta entre phil_res_s congelado y la base. Además de lo de exp_geo necesita en code_v3 exp_cf/phil_res_s con los best.pt de las semillas 0 a 2 y exp_cf/phil con las pruebas de PHIL, que vienen en code_v3_refs_para_exp_escalera.tar.
+
+```bash
+.venv/bin/python -m tests.test_escalera
+```
+
+```bash
+DEVICE=cuda bash experiments/humo_escalera.sh
+```
+
+```bash
+DEVICE=cuda PARALLEL=5 nohup bash experiments/run_escalera.sh >> results/exp_escalera/maestro.log 2>&1 &
+```
+
+En Mac va con caffeinate y DEVICE=mps, en Windows con experiments/despierto.py al lado. El maestro corre las pruebas, las verificaciones por conjunto y semilla, la cola de entrenamiento con la prueba de cada corrida apenas termina, y el resumen con las figuras. Variables, PARALLEL, PELDANOS, SEEDS, DATASETS, NITER, VALEVERY, VALDENSO y VALTARDE, que fijan el calendario de validación, cada VALEVERY iteraciones hasta VALDENSO y cada VALTARDE después. Es relanzable con la misma orden y no repite nada listo.
+
+Todo queda en results/exp_escalera. Corridas en runs/<conjunto>/<peldaño>_s<semilla>, prueba en eval, verificaciones en checks, tablas en tablas.md, escalera.csv y seleccion.csv, figuras en figuras y curvas_validacion.png, borrador en RESUMEN_auto.md y el RESUMEN.md a mano.

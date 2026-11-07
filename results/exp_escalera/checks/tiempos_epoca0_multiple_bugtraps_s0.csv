@@ -1,0 +1,6 @@
+dataset,seed,brazo,mapas,exp_media,secs_por_mapa,ms_por_nodo
+multiple_bugtraps,0,cf_filtro,70,1054.9,0.73,0.692
+multiple_bugtraps,0,R2,70,1054.9,1.659,1.573
+multiple_bugtraps,0,R3,70,1054.9,1.59,1.507
+multiple_bugtraps,0,R4,70,1054.9,1.251,1.186
+multiple_bugtraps,0,C,70,1054.9,1.796,1.702

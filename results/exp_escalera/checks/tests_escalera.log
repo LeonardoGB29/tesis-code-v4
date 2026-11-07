@@ -1,0 +1,10 @@
+ok columnas, base exacta en float64 y 43 entradas finitas
+ok la iteracion 0 de R2, R3, R4 y C reproduce la busqueda de cf_filtro expansion por expansion
+ok alpha arranca en 0 exacto y el gradiente llega a la compuerta (2.99e-01)
+ok la correccion queda dentro de mas menos tope y nunca baja de h_fs
+ok las 43 columnas y las salidas de R2 y C no ven las celdas no vistas
+ok R1 entrena 0.7196 -> 0.0198 con la u-net quieta
+ok R2 entrena 0.0059 -> 0.0007 con la u-net quieta
+ok R4 entrena 0.0383 -> 0.0259 con la u-net quieta
+ok guardar y cargar R0, R2 y C sin la u-net ni phil_res_s adentro
+7/7 pruebas ok

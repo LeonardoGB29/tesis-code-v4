@@ -26,4 +26,21 @@ results/exp_geo/*
 !results/exp_geo/checks/
 !results/exp_geo/runs/
 !results/exp_geo/logs/
+# exp_escalera, lo mismo que exp_geo. resumen, tablas, csv, figuras y logs chicos viajan, pesos y humo quedan fuera
+!results/exp_escalera/
+results/exp_escalera/*
+!results/exp_escalera/RESUMEN.md
+!results/exp_escalera/RESUMEN_auto.md
+!results/exp_escalera/tablas.md
+!results/exp_escalera/resumen.csv
+!results/exp_escalera/escalera.csv
+!results/exp_escalera/seleccion.csv
+!results/exp_escalera/maestro.log
+!results/exp_escalera/trabajos.txt
+!results/exp_escalera/curvas_validacion.png
+!results/exp_escalera/figuras/
+!results/exp_escalera/eval/
+!results/exp_escalera/checks/
+!results/exp_escalera/runs/
+!results/exp_escalera/logs/
 estado*.txt

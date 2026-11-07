@@ -39,7 +39,7 @@ def evaluar(a):
         model, cfg, raw = load_phil(a.phil, a.device)
         epoca = raw.get("iteration", "")
         run = run or Path(a.phil).parent.name
-        if "cf_ckpt" in raw["config"]:                                           # exp_mem: camino5 incluye a cf_filtro y a h_fs
+        if "cf_ckpt" in raw["config"] and not raw["config"].get("peldano"):      # exp_mem: camino5 incluye a cf_filtro y a h_fs. exp_escalera decide en el entrenamiento
             cfgj = Path(a.phil).parent / "config.json"
             ref = (json.loads(cfgj.read_text()).get("ref_val") or {}) if cfgj.exists() else {}
             val = raw.get("val") or {}
