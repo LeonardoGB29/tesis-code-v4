@@ -30,4 +30,5 @@ La lectura es coherente con los mapas. En bugtraps lo que decide la búsqueda es
 - resultados.csv tiene una fila por conjunto para cf_filtro y la red local, con expansiones medias, relaciones con la voraz con h_fs y con cf_filtro, sus p, el largo del camino sobre el óptimo y los ms por nodo.
 - por_semilla.csv tiene una fila por corrida con las épocas corridas, la mejor época, su validación, si se cortó por derrumbe y las relaciones de prueba.
 - eval tiene los csv de prueba mapa por mapa y train los train.csv de cada corrida.
+- pipeline.png muestra los pasos de la red local, el entrenamiento fuera de la búsqueda y el uso dentro de la voraz, con miniaturas reales del mapa 900 de prueba de multiple_bugtraps y la semilla 0. Sale de new_exp/figura_pipeline.py.
 - El código está en new_exp, el plan en new_exp/PLAN.md y la exportación de esta carpeta en new_exp/exportar.py.
