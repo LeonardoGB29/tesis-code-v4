@@ -46,3 +46,5 @@ results/exp_escalera/*
 # tesis, tabla principal, comparaciones, tiempos limpios y figuras, todo liviano
 !results/tesis/
 estado*.txt
+# new_exp, pesos, fotos y logs quedan fuera. los numeros que viajan estan en ablations
+new_exp/results/

@@ -1,0 +1,7 @@
+conjunto,semilla,epocas_corridas,mejor_epoca,mejor_val,corte_por_derrumbe,rel_voraz_hfs,rel_cf_filtro
+gaps_and_forest,0,20,0,1579.2462,1,1.000,2.047
+gaps_and_forest,1,30,0,1579.2462,0,1.000,2.047
+gaps_and_forest,2,10,0,1579.2462,1,1.000,2.047
+multiple_bugtraps,0,30,30,988.4429,0,0.869,0.994
+multiple_bugtraps,1,30,30,977.2714,0,0.853,0.975
+multiple_bugtraps,2,30,30,995.8571,0,0.850,0.971
