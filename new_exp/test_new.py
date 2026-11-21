@@ -14,6 +14,7 @@ from src.cf.fotos import CANALES, LADO
 from src.cf.red import CfConfig
 
 redes.instalar()
+TIPOS = ("local", "transpath", "sin_atencion", "codificador")
 
 
 def modelo(tipo):
@@ -22,7 +23,7 @@ def modelo(tipo):
 
 def test_forma_y_epoca_cero():
     x = torch.rand(2, CANALES, LADO, LADO)
-    for tipo in ("local", "transpath"):
+    for tipo in TIPOS:
         m = modelo(tipo).eval()
         with torch.no_grad():
             y = m(x)
@@ -41,7 +42,7 @@ def test_config_transpath():
 
 def test_guardar_y_cargar():
     x = torch.rand(1, CANALES, LADO, LADO)
-    for tipo in ("local", "transpath"):
+    for tipo in TIPOS:
         m = modelo(tipo)
         with torch.no_grad():
             for p in m.parameters():
@@ -57,7 +58,7 @@ def test_guardar_y_cargar():
 
 def test_gradiente():
     x, y = torch.rand(2, CANALES, LADO, LADO), torch.rand(2, LADO, LADO)
-    for tipo in ("local", "transpath"):
+    for tipo in TIPOS:
         m = modelo(tipo).train()
         opt = torch.optim.Adam(m.parameters(), lr=1e-3)
         loss = ((m(x) - y) ** 2).mean()
@@ -89,7 +90,7 @@ def test_epoca_cero_es_hfs():
     gp = grids_de("mazes", "validation")[0]
     data, adj, v_s, v_g, h_star = load_problem(gp)
     base = voraz(Evaluador(data, v_g, 16, ESCALA), data, v_s, v_g, adj)
-    for tipo in ("local", "transpath"):
+    for tipo in TIPOS:
         m = modelo(tipo).eval()
         res = voraz(EvaluadorCF(data, v_g, m, 20, 16, ESCALA), data, v_s, v_g, adj)
         assert res.n_expanded == base.n_expanded and res.path == base.path, (tipo, res.n_expanded, base.n_expanded)

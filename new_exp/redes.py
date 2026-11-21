@@ -1,4 +1,5 @@
-# redes de new_exp: cnn local con el suavizado de cf_filtro y la arquitectura de transpath con la misma cabeza en cero y el mismo suavizado
+# redes de new_exp: cnn local con el suavizado de cf_filtro, la arquitectura de transpath con la misma cabeza en cero y el mismo suavizado,
+#   la u-net de cf_filtro sin atencion y su codificador solo con la cabeza en el cuello
 #   transpath segun el repositorio AIRI-Institute/TransPath (models/autoencoder.py y modules/): tallo 5x5, 3 bajadas con bloque residual,
 #   4 bloques transformer de 4 cabezas con posiciones aprendidas, 3 subidas, groupnorm de 32 grupos, silu y salida tanh llevada a (0, 1)
 #   unico cambio: la ultima conv arranca en cero, asi cf = 0.5 constante y la epoca 0 es la voraz con h_fs, igual que en cf_filtro
@@ -8,7 +9,7 @@ import torch.nn.functional as F
 
 from src.cf import red
 from src.cf.fotos import CANALES, CF_MIN, LADO
-from src.cf.red import LocalCF, Suavizado
+from src.cf.red import LocalCF, Suavizado, UNetCF
 
 _construir_original = red.construir
 TRANSPATH = {"ancho": 64, "niveles": 3, "capas_atencion": 4, "cabezas": 4}     # valores por defecto del autoencoder de transpath
@@ -181,7 +182,47 @@ class TransPathCF(nn.Module):
         return cf
 
 
+class UNetSinAtencion(UNetCF):
+    # la u-net de cf_filtro sin los bloques de atencion del cuello; sin atencion la posicion aprendida seria un sesgo fijo por celda, se deja en cero
+    def __init__(self, cfg):
+        cfg.capas_atencion = 0
+        super().__init__(cfg)
+        pos = torch.zeros_like(self.pos)
+        del self.pos
+        self.register_buffer("pos", pos)
+        self.suave = SuavizadoMat(cfg.sigma)
+
+
+class SoloCodificador(UNetCF):
+    # el codificador de cf_filtro con la atencion del cuello y sin decodificador ni saltos
+    # cabeza 1x1 en cero sobre el cuello de 13x13, interpolacion bilineal a 208 y el mismo gauss fijo
+    def __init__(self, cfg):
+        super().__init__(cfg)
+        del self.up, self.dec, self.rasgos, self.cabeza
+        self.cabeza_cuello = nn.Conv2d(self.pos.shape[-1], 1, 1)
+        nn.init.zeros_(self.cabeza_cuello.weight)
+        nn.init.zeros_(self.cabeza_cuello.bias)
+        self.suave = SuavizadoMat(cfg.sigma)
+
+    def forward(self, x):
+        for i, e in enumerate(self.enc):
+            x = e(x if i == 0 else self.pool(x))
+        B, C, Hc, Wc = x.shape
+        t = x.flatten(2).transpose(1, 2) + self.pos
+        for a in self.att:
+            t = a(t)
+        x = t.transpose(1, 2).reshape(B, C, Hc, Wc)
+        cf = torch.sigmoid(self.cabeza_cuello(x)).clamp(CF_MIN, 1.0)
+        c = cf.mean(dim=(2, 3), keepdim=True)
+        cf = (c + F.interpolate(cf - c, size=(LADO, LADO), mode="bilinear", align_corners=False)).squeeze(1)
+        return self.suave(cf).clamp(CF_MIN, 1.0)
+
+
 def construir(cfg):
+    if cfg.tipo == "sin_atencion":
+        return UNetSinAtencion(cfg)
+    if cfg.tipo == "codificador":
+        return SoloCodificador(cfg)
     if cfg.tipo == "local" and cfg.salida == "filtro":
         return LocalFiltro(cfg)
     if cfg.tipo == "transpath":

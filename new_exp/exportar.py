@@ -1,6 +1,6 @@
 # copia los numeros de un modelo de new_exp a ablations/<carpeta>, solo csv, la explicacion va a mano en el RESUMEN.md de esa carpeta
 #   python -m new_exp.exportar --modelo cf_local_filtro --carpeta ablations/cnn_local
-#   resultados.csv     una fila por conjunto para cf_filtro y el modelo, las mismas cuentas que new_exp/resumen.py
+#   resultados.csv     una fila por conjunto para cf_filtro y el modelo, expansiones y camino sobre el optimo contra h_fs y contra cf_filtro
 #   por_semilla.csv    una fila por corrida, epocas, corte por derrumbe y relaciones de prueba
 #   eval/<ds>/         los csv de prueba mapa por mapa
 #   train/<ds>/        los train.csv de cada corrida
@@ -13,7 +13,7 @@ import experiments.resumen_cf as rc
 from experiments.common import EXP_CF2, RESULTS
 from new_exp.resumen import contra_filtro, num
 
-CONJUNTOS = ["gaps_and_forest", "multiple_bugtraps"]
+CONJUNTOS = ["gaps_and_forest", "multiple_bugtraps", "mazes"]
 
 
 def main():
@@ -26,8 +26,11 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     ev = rc.corridas(root, RESULTS, EXP_CF2)
 
-    filas = [["conjunto", "modelo", "semillas", "expansiones", "rel_voraz_hfs", "rel_voraz_hfs_por_semilla", "p_voraz_hfs",
-              "rel_cf_filtro", "rel_cf_filtro_por_semilla", "p_cf_filtro", "camino", "ms_nodo"]]
+    # dos metricas: expansiones y camino sobre el optimo, cada una contra la voraz con h_fs y contra cf_filtro
+    filas = [["conjunto", "modelo", "semillas", "exito", "expansiones", "rel_voraz_hfs", "rel_voraz_hfs_por_semilla", "p_voraz_hfs",
+              "rel_cf_filtro", "rel_cf_filtro_por_semilla", "p_cf_filtro",
+              "camino", "caminos_optimos_pct", "camino_vs_hfs_pct", "p_camino_hfs",
+              "mapas_camino_comun", "camino_comun", "camino_comun_cf_filtro", "rel_camino_cf_filtro", "p_camino_cf_filtro", "ms_nodo"]]
     por_semilla = {}
     for ds in CONJUNTOS:
         for mod in ("cf_filtro", m):
@@ -35,9 +38,12 @@ def main():
             if not r:
                 continue
             c = contra_filtro(ev, ds, mod)
-            filas.append([ds, mod, r["seeds"], num(r["exp"], 1), num(r.get("rel_hfs"), 3), r.get("rel_hfs_por_semilla", ""),
+            filas.append([ds, mod, r["seeds"], num(r["exito"], 3), num(r["exp"], 1), num(r.get("rel_hfs"), 3), r.get("rel_hfs_por_semilla", ""),
                           num(r.get("p_hfs_exp")), num(c["rel"], 3) if c else "", " ".join(f"{x:.3f}" for x in c["por_semilla"]) if c else "",
-                          num(c["p"]) if c else "", num(r.get("camino_opt"), 3), num(r.get("ms_nodo"), 3)])
+                          num(c["p"]) if c else "",
+                          num(r.get("camino_opt"), 3), num(r.get("pct_optimos"), 1), num(r.get("camino_vs_hfs_pct"), 1), num(r.get("p_hfs_camino")),
+                          c["n_camino"] if c else "", num(c["camino"], 3) if c else "", num(c["camino_filtro"], 3) if c else "",
+                          num(c["rel_camino"], 3) if c else "", num(c["p_camino"]) if c else "", num(r.get("ms_nodo"), 3)])
             if mod == m:
                 seeds = [int(s) for s in str(r["seeds"]).split()]
                 rh = str(r.get("rel_hfs_por_semilla", "")).split()

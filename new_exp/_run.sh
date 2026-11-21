@@ -1,6 +1,6 @@
 #!/bin/bash
 # un trabajo de new_exp; relanzable, salta lo que ya tiene listo o csv
-#   bash new_exp/_run.sh train <ds> <seed> <modelo>      modelo: cf_local_filtro | cf_transpath; entrena y evalua en prueba
+#   bash new_exp/_run.sh train <ds> <seed> <modelo>      modelo: cf_local_filtro | cf_transpath | cf_sin_atencion | cf_codificador; entrena y evalua en prueba
 #   bash new_exp/_run.sh phil <ds> <seed>               phil_res_cf sobre el cf_filtro de exp_cf2, con experiments/_run_mem.sh
 #   bash new_exp/_run.sh eval_phil <ds> <seed>          evaluacion de prueba de phil_res_cf
 set -u
@@ -20,6 +20,7 @@ case $paso in
     case $modelo in
       cf_local_filtro) ancho="--ancho 32" ;;              # mismo computo por imagen que la u-net de cf_filtro
       cf_transpath) ancho="" ;;                           # transpath fija sus anchos en new_exp/redes.py
+      cf_sin_atencion|cf_codificador) ancho="--ancho 16" ;;   # el ancho de cf_filtro
       *) log "FALLO modelo desconocido $modelo"; exit 1 ;;
     esac
     out=$ROOT/$modelo/runs/$ds/${modelo}_s$s

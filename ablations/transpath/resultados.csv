@@ -1,5 +1,7 @@
-conjunto,modelo,semillas,expansiones,rel_voraz_hfs,rel_voraz_hfs_por_semilla,p_voraz_hfs,rel_cf_filtro,rel_cf_filtro_por_semilla,p_cf_filtro,camino,ms_nodo
-gaps_and_forest,cf_filtro,0 1 2 3 4,783.5,0.488,0.510 0.487 0.519 0.450 0.476,0.0000,,,,1.053,1.399
-gaps_and_forest,cf_transpath,0 1 2,828.1,0.516,0.510 0.537 0.503,0.0000,1.057,1.043 1.099 1.029,0.0000,1.044,11.195
-multiple_bugtraps,cf_filtro,0 1 2 3 4,986.4,0.875,0.932 0.862 0.847 0.870 0.865,0.0000,,,,1.194,1.712
-multiple_bugtraps,cf_transpath,0 1 2,1084.7,0.962,1.045 0.924 0.917,0.0529,1.100,1.195 1.056 1.048,0.0000,1.188,10.956
+conjunto,modelo,semillas,exito,expansiones,rel_voraz_hfs,rel_voraz_hfs_por_semilla,p_voraz_hfs,rel_cf_filtro,rel_cf_filtro_por_semilla,p_cf_filtro,camino,caminos_optimos_pct,camino_vs_hfs_pct,p_camino_hfs,mapas_camino_comun,camino_comun,camino_comun_cf_filtro,rel_camino_cf_filtro,p_camino_cf_filtro,ms_nodo
+gaps_and_forest,cf_filtro,0 1 2 3 4,1.000,783.5,0.488,0.510 0.487 0.519 0.450 0.476,0.0000,,,,1.053,1.8,-17.2,0.0000,,,,,,1.399
+gaps_and_forest,cf_transpath,0 1 2,1.000,828.1,0.516,0.510 0.537 0.503,0.0000,1.057,1.043 1.099 1.029,0.0000,1.044,1.1,-17.9,0.0000,91,1.044,1.053,0.992,0.0023,11.195
+multiple_bugtraps,cf_filtro,0 1 2 3 4,1.000,986.4,0.875,0.932 0.862 0.847 0.870 0.865,0.0000,,,,1.194,14.2,-0.3,0.0007,,,,,,1.712
+multiple_bugtraps,cf_transpath,0 1 2,1.000,1084.7,0.962,1.045 0.924 0.917,0.0529,1.100,1.195 1.056 1.048,0.0000,1.188,15.3,-0.8,0.0409,100,1.188,1.194,0.995,0.4361,10.956
+mazes,cf_filtro,0 1 2,1.000,447.6,1.012,1.053 0.982 1.000,0.0018,,,,1.070,47.3,-1.2,0.0018,,,,,,1.477
+mazes,cf_transpath,0 1 2,1.000,442.4,1.000,1.000 1.000 1.000,1.0000,0.988,0.988 0.988 0.988,0.0018,1.084,35.0,0.0,1.0000,100,1.084,1.070,1.013,0.0018,10.497

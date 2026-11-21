@@ -8,8 +8,8 @@ import numpy as np
 import experiments.resumen_cf as rc
 from experiments.common import DATASETS, EXP_CF2, RESULTS, p_wilcoxon
 
-rc.MODELOS.update({"cf_local_filtro": ("cf_local_filtro", 3), "cf_transpath": ("cf_transpath", 3)})
-MODELOS = ["cf_filtro", "cf_local_filtro", "cf_transpath", "phil_res_cf"]
+rc.MODELOS.update({m: (m, 3) for m in ("cf_local_filtro", "cf_transpath", "cf_sin_atencion", "cf_codificador")})
+MODELOS = ["cf_filtro", "cf_local_filtro", "cf_transpath", "cf_sin_atencion", "cf_codificador", "phil_res_cf"]
 NOMBRES = {"cf_filtro": "corrector global (cf_filtro)", "cf_local_filtro": "corrector local 11x11 (exp 1)",
            "cf_transpath": "arquitectura de transpath (exp 2)", "phil_res_cf": "PHIL sobre el corrector (exp 3)"}
 
@@ -22,13 +22,19 @@ def contra_filtro(ev, ds, m):
         return None
     seeds = sorted(set(a) & set(b)) if m == "phil_res_cf" else sorted(a)
     sb = seeds if m == "phil_res_cf" else sorted(b)
-    ea, _ = rc.medias_por_mapa(a, seeds)
-    eb, _ = rc.medias_por_mapa(b, sb)
+    ea, ca = rc.medias_por_mapa(a, seeds)
+    eb, cb = rc.medias_por_mapa(b, sb)
     g = sorted(set(ea) & set(eb))
     base = np.mean([eb[x] for x in g])
     por_semilla = [np.mean([a[s][x]["exp"] for x in g]) / (np.mean([b[s][x]["exp"] for x in g]) if m == "phil_res_cf" else base) for s in seeds]
+    # camino sobre el optimo en los mapas que resuelven las dos con todas sus semillas
+    gc = sorted(set(ca) & set(cb))
+    cam_a = float(np.mean([ca[x] for x in gc])) if gc else float("nan")
+    cam_b = float(np.mean([cb[x] for x in gc])) if gc else float("nan")
     return {"rel": float(np.mean([ea[x] for x in g]) / base), "p": p_wilcoxon([ea[x] for x in g], [eb[x] for x in g]),
-            "por_semilla": por_semilla, "seeds": seeds}
+            "por_semilla": por_semilla, "seeds": seeds, "n_camino": len(gc), "camino": cam_a, "camino_filtro": cam_b,
+            "rel_camino": cam_a / cam_b if gc else float("nan"),
+            "p_camino": p_wilcoxon([ca[x] for x in gc], [cb[x] for x in gc]) if gc else 1.0}
 
 
 def lectura(res, cf):

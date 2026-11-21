@@ -1,6 +1,7 @@
 #!/bin/bash
 # maestro de new_exp en code_v4, los 2 experimentos esenciales, relanzable, no repite lo listo
-#   ola 1, corrector local 11x11 con el suavizado de cf_filtro (exp 1). ola 2, arquitectura de transpath (exp 2)
+#   una ola por modelo, corrector local 11x11 (exp 1), u-net sin atencion y codificador solo (ablacion de arquitectura) y transpath (exp 2)
+#   los 3 conjuntos, lo ya listo de la primera tanda (gaps y bugtraps de local y transpath) se salta
 #   en windows con git bash, desde code_v4
 #     DEVICE=cuda nohup bash new_exp/run.sh >> new_exp/results/maestro.log 2>&1 &
 #     nohup .venv/bin/python experiments/despierto.py new_exp/results > new_exp/results/despierto.log 2>&1 &
@@ -13,8 +14,8 @@ ROOT=${ROOT:-new_exp/results}
 P1=${P1:-4}                    # procesos de la ola 1
 P2=${P2:-2}                    # procesos de la ola 2, transpath usa unos 3 GB de memoria de la gpu por proceso y la 4070 tiene 8
 SEEDS=${SEEDS:-"0 1 2"}
-DATASETS=${DATASETS:-"multiple_bugtraps gaps_and_forest"}
-MODELOS=${MODELOS:-"cf_local_filtro cf_transpath"}
+DATASETS=${DATASETS:-"multiple_bugtraps gaps_and_forest mazes"}
+MODELOS=${MODELOS:-"cf_local_filtro cf_sin_atencion cf_codificador cf_transpath"}
 export ROOT DEVICE=${DEVICE:-cuda} EPOCHS=${EPOCHS:-30} EXTRA=${EXTRA:-} EVALX=${EVALX:-}
 export PYTHONUTF8=1
 mkdir -p $ROOT/checks

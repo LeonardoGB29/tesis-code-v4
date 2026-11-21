@@ -1,0 +1,7 @@
+conjunto,modelo,semillas,exito,expansiones,rel_voraz_hfs,rel_voraz_hfs_por_semilla,p_voraz_hfs,rel_cf_filtro,rel_cf_filtro_por_semilla,p_cf_filtro,camino,caminos_optimos_pct,camino_vs_hfs_pct,p_camino_hfs,mapas_camino_comun,camino_comun,camino_comun_cf_filtro,rel_camino_cf_filtro,p_camino_cf_filtro,ms_nodo
+gaps_and_forest,cf_filtro,0 1 2 3 4,1.000,783.5,0.488,0.510 0.487 0.519 0.450 0.476,0.0000,,,,1.053,1.8,-17.2,0.0000,,,,,,1.399
+gaps_and_forest,cf_codificador,0 1 2,1.000,838.3,0.523,0.499 0.535 0.533,0.0000,1.070,1.022 1.095 1.092,0.0058,1.071,0.4,-15.7,0.0000,91,1.071,1.053,1.018,0.0000,1.932
+multiple_bugtraps,cf_filtro,0 1 2 3 4,1.000,986.4,0.875,0.932 0.862 0.847 0.870 0.865,0.0000,,,,1.194,14.2,-0.3,0.0007,,,,,,1.712
+multiple_bugtraps,cf_codificador,0 1 2,1.000,1047.8,0.930,0.924 1.000 0.864,0.0000,1.062,1.056 1.143 0.988,0.0000,1.203,13.0,0.4,0.0000,100,1.203,1.194,1.007,0.0027,2.343
+mazes,cf_filtro,0 1 2,1.000,447.6,1.012,1.053 0.982 1.000,0.0018,,,,1.070,47.3,-1.2,0.0018,,,,,,1.477
+mazes,cf_codificador,0 1 2,1.000,445.0,1.006,1.018 1.000 1.000,0.0026,0.994,1.006 0.988 0.988,0.0120,1.074,38.0,-0.9,0.0000,100,1.074,1.070,1.004,0.3131,2.111
