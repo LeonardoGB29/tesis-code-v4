@@ -1,0 +1,22 @@
+conjunto,modelo,mapas,expansiones,camino,caminos_optimos_pct
+gaps_and_forest,optimo_bfs,91,,472.9780,100.0000
+gaps_and_forest,Voraz con h_fs (referencia),91,1603.9670,600.5275,0.0000
+gaps_and_forest,U-Net con atención (cf_filtro),91,810.5385,496.5165,2.9304
+gaps_and_forest,U-Net sin atención,91,822.5971,501.5604,0.0000
+gaps_and_forest,Solo codificador,91,838.2747,506.4432,0.3663
+gaps_and_forest,TransPath,91,828.1062,493.4396,1.0989
+gaps_and_forest,CNN local 11x11,91,1603.9670,600.5275,0.0000
+multiple_bugtraps,optimo_bfs,100,,267.6600,100.0000
+multiple_bugtraps,Voraz con h_fs (referencia),100,1127.2700,324.6100,13.0000
+multiple_bugtraps,U-Net con atención (cf_filtro),100,992.2700,323.7333,14.0000
+multiple_bugtraps,U-Net sin atención,100,1070.1033,323.1000,14.0000
+multiple_bugtraps,Solo codificador,100,1047.8300,325.7633,13.0000
+multiple_bugtraps,TransPath,100,1084.7033,321.7300,15.3333
+multiple_bugtraps,CNN local 11x11,100,966.7567,322.9833,14.0000
+mazes,optimo_bfs,100,,266.7100,100.0000
+mazes,Voraz con h_fs (referencia),100,442.4000,291.8400,35.0000
+mazes,U-Net con atención (cf_filtro),100,447.5600,288.4733,47.3333
+mazes,U-Net sin atención,100,438.9433,290.0333,43.0000
+mazes,Solo codificador,100,445.0400,289.1033,38.0000
+mazes,TransPath,100,442.4000,291.8400,35.0000
+mazes,CNN local 11x11,100,442.4000,291.8400,35.0000
